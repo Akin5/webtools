@@ -119,9 +119,4 @@ ion-icon {
 	opacity: 0;
 	visibility: hidden;
 }
-.collapse-item
-.collapse-item:hover,
-.collapse-item:active {
-	background: var(--primary);
-	color: var(--dark);
-}
+

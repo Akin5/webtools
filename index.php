@@ -1,6 +1,6 @@
 <?php
 
-if (!session_id()) session_start();
+require 'vendor/autoload.php';
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ if (!session_id()) session_start();
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 	<!-- Css -->
-	<link rel="stylesheet" href="vendor/fontawesome-free/css/all.min.css" type="text/css">
+	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" type="text/css">
 	<link rel="stylesheet" href="css/sb-admin-2.min.css" type="text/css">
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<!-- Font -->
@@ -53,7 +53,7 @@ if (!session_id()) session_start();
 					<span>Sosmed Tools</span>
 				</a>
 				<div id="collapseSosmed" class="collapse" data-parent="#accordinSidebar">
-					<div class="collapse-inner rounded py-2 bg-gradient-light">
+					<div class="collapse-inner rounded py-2 bg-light">
 						<h5 class="collapse-header">Sosmed Tools</h5>
 						<a class="collapse-item" href="/tools/ytdown.php">
 							<i class="fab fa-youtube"></i>
@@ -85,7 +85,7 @@ if (!session_id()) session_start();
 					<span>SEO Tools</span>
 				</a>
 				<div id="collapseSEO" class="collapse" data-parent="#accordinSidebar">
-					<div class="collapse-inner rounded py-2 bg-gradient-light">
+					<div class="collapse-inner rounded py-2 bg-light">
 						<h5 class="collapse-header">SEO Tools</h5>
 						<a href="/tools/frewproxy.php" class="collapse-item">
 							<ion-icon name="shield-checkmark-outline"></ion-icon>
@@ -117,7 +117,7 @@ if (!session_id()) session_start();
 					<span>Spam Tools</span>
 				</a>
 				<div id="collapseSpam" class="collapse" data-parent="#accordinSidebar">
-					<div class="collapse-inner rounded py-2 bg-gradient-light">
+					<div class="collapse-inner rounded py-2 bg-light">
 						<h5 class="collapse-header">Spam Tools</h5>
 						<a href="/tools/spwhats.php" class="collapse-item">
 							<ion-icon name="logo-whatsapp"></ion-icon>
@@ -125,18 +125,98 @@ if (!session_id()) session_start();
 						</a>
 						<a class="collapse-item" href="/tools/sms.php">
 							<i class="fas fa-sms"></i>
-							Sms Gratis
+							<span>Sms Gratis</span>
+						</a>
+					</div>
+				</div>
+			</li>
+			<hr class="sidebar-divider my-0">
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCrypto">
+					<ion-icon name="apps-outline"></ion-icon>
+					<span>Crypto Tools</span>
+				</a>
+				<div id="collapseCrypto" class="collapse" data-parent="#accordinSidebar">
+					<div class="collapse-inner rounded bg-light py-2">
+						<h5 class="collapse-header">Crypto Tools</h5>
+						<a class="collapse-item" href="/tools/base64.php">
+							<ion-icon name="finger-print-outline"></ion-icon>
+							<span>Base64 Tools</span>
+						</a>
+						<a class="collapse-item" href="/tools/md5.php">
+							<ion-icon name="key-outline"></ion-icon>
+							<span>MD5 Tools</span>
+						</a>
+						<a class="collapse-item" href="/tools/hash.php">
+							<ion-icon name="search-outline"></ion-icon>
+							<span>Hash identifier</span>
+						</a>
+						<a class="collapse-item" href="/tools/enc">
+							<i class="fa fa-lock"></i>
+							<span>PHP Encryption</span>
+						</a>
+						<a class="collapse-item" href="/tools/genhash.php">
+							<ion-icon name="finger-print-outline"></ion-icon>
+							<span>Generate Hash</span>
+						</a>
+					</div>
+				</div>
+			</li>
+			<hr class="sidebar-divider my-0">
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDefacer">
+					<ion-icon name="apps-outline"></ion-icon>
+					<span>Defacer Tools</span>
+				</a>
+				<div id="collapseDefacer" class="collapse" data-parent="#accordinSidebar">
+					<div class="collapse-inner rounded bg-light pl-0">
+						<h5 class="collapse-header">Defacer Tools</h5>
+						<a class="collapse-item" href="/tools/csrf.php">
+							<ion-icon name="bug-outline"></ion-icon>
+							<span>CSRF Online</span>
+						</a>
+						<a class="collapse-item" href="/tools/balibang.php">
+							<ion-icon src="icons/inject.svg" style="transform: rotateY(180deg)"></ion-icon>
+							<span>Balibang Auto Sqli</span>
+						</a>
+						<a class="collapse-item" href="/tools/webdav.php">
+							<ion-icon src="icons/webdav.svg"></ion-icon>
+							<span>WebDav Deface</span>
+						</a>
+						<a class="collapse-item" href="/tools/drupal.php">
+							<ion-icon src="icons/inject.svg"></ion-icon>
+							<span>Drupal Exploit</span>
+						</a>
+						<a class="collapse-item" href="/tools/hackbar.php">
+							<ion-icon name="skull-outline"></ion-icon>
+							<span>Hackbar</span>
+						</a>
+						<a class="collapse-item" href="/tools/lokoexpoit.php">
+							<ion-icon src="icons/inject.svg"></ion-icon>
+							<span>Lokomedia Auto Exploit</span>
+						</a>
+						<a class="collapse-item" href="/tools/wpbrute.php">
+							<ion-icon name="logo-wordpress"></ion-icon>
+							<span>Wordpress BruteForce</span>
+						</a>
+						<a class="collapse-item" href="/tools/lokoexpoit.php">
+							<ion-icon src="icons/inject.svg" style="transform: rotateY(180deg)"></ion-icon>
+							<span>Kfcinder Exploiter</span>
+						</a>
+						<a class="collapse-item" href="/tools/lokoexpoit.php">
+							<ion-icon name="search-outline"></ion-icon>
+							<span>Admin Finder</span>
 						</a>
 					</div>
 				</div>
 			</li>
 		</ul>
 	</div>
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/ionicons/dist/ionicons.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="vendor/fontawesome-free/js/all.min.js"></script>
-	<script src="js/sb-admin-2.min.js"></script>
+	<script src="plugins/jquery/jquery.min.js"> </script>
+	<script src="plugins/ionicons/dist/ionicons.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.min.js"> </script>
+	<script src="plugins/fontawesome-free/js/all.min.js"></script>
+	<script src="js/sb-admin-2.min.js"> </script>
 	<script src="js/main.js"></script>
 </body>
 

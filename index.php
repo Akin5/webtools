@@ -20,7 +20,6 @@ require 'vendor/autoload.php';
 	<!-- Css -->
 	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" type="text/css">
 	<link rel="stylesheet" href="css/sb-admin-2.min.css" type="text/css">
-	<link rel="stylesheet" href="plugins/sweetalert2-themes/bootstrap-4/bootstrap-4.scss">
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<!-- Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -334,13 +333,11 @@ require 'vendor/autoload.php';
 	</div>
 	<script src="plugins/jquery/jquery.min.js"></script>
 	<script src="plugins/jquery-easing/jquery.easing.min.js"></script>
-	<script src="js/promise-polyfill.js"></script>
-	<script src="plugins/ionicons/dist/ionicons.js"></script>
-	<script src="plugins/sweetalert2/src/sweetalert2.js"></script>
 	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="plugins/fontawesome-free/js/all.min.js"></script>
 	<script src="js/sb-admin-2.min.js"> </script>
 	<script src="js/main.js"></script>
+	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </body>
 
 </html>

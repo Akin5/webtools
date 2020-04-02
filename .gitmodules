@@ -1,4 +1,0 @@
-[submodule "plugins/ionicons"]
-	url = https://github.com/ionic-team/ionicons/
-[submodule "plugins/sweetalert2"]
-	url = https://github.com/sweetalert2/sweetalert2

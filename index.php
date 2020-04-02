@@ -26,12 +26,12 @@ require 'vendor/autoload.php';
 </head>
 
 <body id="page-top">
-	<div id="loader-wrapper">
-		<div class="loader"></div>
-		<div class="loader-sec-right"></div>
-		<div class="loader-sec-left"></div>
-	</div>
 	<div id="wrapper">
+		<div id="loader-wrapper">
+			<div class="loader"></div>
+			<div class="loader-sec-right"></div>
+			<div class="loader-sec-left"></div>
+		</div>
 		<ul id="accordinSidebar" class="navbar-nav sidebar sidebar-dark accordin bg-gradient-dark">
 			<a class="sidebar-brand d-flex justify-content-center align-items-center" href="/">
 				<div class="sidebar-brand-icon">
@@ -193,11 +193,11 @@ require 'vendor/autoload.php';
 						</a>
 						<a class="collapse-item" href="/tools/lokoexpoit.php">
 							<ion-icon src="icons/inject.svg"></ion-icon>
-							<span>Lokomedia Auto Exploit</span>
+							<span>Lokmed Auto Exploit</span>
 						</a>
 						<a class="collapse-item" href="/tools/wpbrute.php">
 							<ion-icon name="logo-wordpress"></ion-icon>
-							<span>Wordpress BruteForce</span>
+							<span>WP BruteForce</span>
 						</a>
 						<a class="collapse-item" href="/tools/lokoexpoit.php">
 							<ion-icon src="icons/inject.svg" style="transform: rotateY(180deg)"></ion-icon>
@@ -230,11 +230,111 @@ require 'vendor/autoload.php';
 					</div>
 				</div>
 			</li>
+			<hr class="sidebar-divider my-0">
 		</ul>
+		<div id="content-wrapper" class="d-flex flex-column">
+			<div id="content">
+				<nav class="navbar navbar-expand navbar-dark bg-dark topbar shadow static-top mb-4">
+					<button class="btn btn-link rounded-circle bars mr-2" id="sidebarToggleTop"><i class="fa fa-bars"></i></button>
+					<form action="" method="post" class="navbar-search mr-auto form-inline p-3 d-sm-inline-block d-none">
+						<div class="input-group">
+							<input id="querySearch" class="form-control form-control-search" type="search" name="querySearch" placeholder="Search...">
+							<div class="input-group-append">
+								<button class="btn btn-search" type="submit" name="btnSearch" id="btnSearch">
+									<i class="fas fa-fw fa-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown no-arrow d-md-none">
+							<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+								<i class="fas fa-search"></i>
+							</a>
+							<div class="dropdown-menu-right shadow dropdown-menu animated--fade-in bg-dark">
+								<form action="" method="post" class="navbar-search mr-auto w-100 form-inline p-3">
+									<div class="input-group">
+										<input id="search" class="form-control form-control-search" type="search" name="search" placeholder="Search..">
+										<div class="input-group-append">
+											<button class="btn btn-search" type="submit" name="btnSearch" id="btnSearch">
+												<i class="fas fa-fw fa-search"></i>
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</li>
+						<div class="topbar-divider d-sm-block"></div>
+						<li class="nav-item dropdown no-arrow">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown">
+								Home
+							</a>
+							<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in">
+								<h5 class="dropdown-header">Social Media</h5>
+								<a class="dropdown-item" href="http://blackcodercrush.rf.gd" target="_blank">
+									<ion-icon src="icons/profileweb.svg" style="font-size: 20px"></ion-icon>
+									<span>Website Profile</span>
+								</a>
+								<a class="dropdown-item" href="https://github.com/blackcodercrush" target="_blank">
+									<i class="fab  mr-2 text-gray fa-github"></i>
+									<span>Github</span>
+								</a>
+								<a class="dropdown-item" href="https://www.instagram.com/blackcodercrush" target="_blank">
+									<i class="fab  mr-2 text-gray fa-instagram"></i>
+									<span>Instagram</span>
+								</a>
+								<a class="dropdown-item" href="https://facebook.com/blackcodercrush" target="_blank">
+									<i class="fab  mr-2 text-gray fa-facebook"></i>
+									<span>Facebook</span>
+								</a>
+								<a class="dropdown-item" href="https://www.blackcodercrush.com/?m=1" target="_blank">
+									<i class="fab  mr-2 text-gray fa-blogger"></i>
+									<span>Blog</span>
+								</a>
+								<a class="dropdown-item" href="https://www.youtube.com/channel/UCk-KwD5UouOkjhAvr2E-dPQ" target="_blank">
+									<i class="fab  mr-2 text-gray fa-youtube"></i>
+									<span>Youtube</span>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</nav>
+				<div class="container-fluid">
+					<div class="d-flex justify-content-between align-items-center mb-4">
+						<h1 class="h3 text-gray-700 mb-0 text-center">Dashboard Tools</h1>
+						<ul class="breadcrumb d-none d-md-flex">
+							<li class="breadcrumb-item"><a class="breadcrumb-link" href="/">Home</a></li>
+							<li class="breadcrumb-item active">Dashboard</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-md-7 mx-auto">
+						<div class="card border-top-primary shadow">
+							<div class="card-body">
+								<div class="row no-gutters align-items-center">
+									<div class="col-md-7">
+										<h1 class="text-gray-800 text-center">Welcome</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer class="sticky-footer bg-dark">
+				<div class="container my-auto shadow">
+					<div class="copyright text-center my-auto text-light">
+						<span>Copyright 2020 made with <i class="fa fa-heart text-danger"></i> BlackCoderCrush</span>
+					</div>
+				</div>
+			</footer>
+		</div>
 	</div>
 	<script src="plugins/jquery/jquery.min.js"></script>
 	<script src="plugins/ionicons/dist/ionicons.js"></script>
 	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="plugins/jquery-easing/jquery.easing.min.js"></script>
 	<script src="plugins/fontawesome-free/js/all.min.js"></script>
 	<script src="js/sb-admin-2.min.js"> </script>
 	<script src="js/main.js"></script>

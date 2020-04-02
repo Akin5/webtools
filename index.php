@@ -210,11 +210,31 @@ require 'vendor/autoload.php';
 					</div>
 				</div>
 			</li>
+			<hr class="sidebar-divider my-0">
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProgrammer">
+					<ion-icon name="apps-outline"></ion-icon>
+					<span>Programmer Tools</span>
+				</a>
+				<div id="collapseProgrammer" class="collapse" data-parent="#accordinSidebar">
+					<div class="collapse-inner rounded py-2 bg-light">
+						<h5 class="collapse-header">Programmer Tools</h5>
+						<a class="collapse-item" href="/tools/editor.php">
+							<ion-icon name="create-outline"></ion-icon>
+							<span>Live Editor</span>
+						</a>
+						<a class="collapse-item" href="/tools/jso.php">
+							<ion-icon src="icons/puzzle.svg"></ion-icon>
+							<span>JSO Creator</span>
+						</a>
+					</div>
+				</div>
+			</li>
 		</ul>
 	</div>
-	<script src="plugins/jquery/jquery.min.js"> </script>
+	<script src="plugins/jquery/jquery.min.js"></script>
 	<script src="plugins/ionicons/dist/ionicons.js"></script>
-	<script src="plugins/bootstrap/js/bootstrap.min.js"> </script>
+	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="plugins/fontawesome-free/js/all.min.js"></script>
 	<script src="js/sb-admin-2.min.js"> </script>
 	<script src="js/main.js"></script>

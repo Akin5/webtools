@@ -238,14 +238,21 @@ ion-icon {
 	display: flex;
 	position: relative;
 	flex-direction: column;
-	border: 1px solid red;
-	padding: 10px;
+	padding: 5px;
+	box-sizing: border-box;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 3px;
 }
 .home .home-body .home-body-media .home-body-media-link:hover {
 	color: #3498db;
 	transform: scale(1.2);
 }
 .home .home-body .home-body-media .home-body-media-link span {
+	position: relative;
+	font-size: 0.8rem;
+	color: #2d3436;
+	padding: 0 3px 3px;
 	display: none;
 }
 .home .home-body .home-body-link {
@@ -270,7 +277,7 @@ ion-icon {
 	margin-left: 4px;
 	text-decoration: underline;
 }
-@media (min-width: 786px) {
+@media only screen and (min-width: 786px) {
 	.sidebar-brand-text {
 		font-size: 1rem;
 	}
@@ -304,12 +311,6 @@ ion-icon {
 		font-size: 2rem;
 	}
 	.home .home-body .home-body-media .home-body-media-link span {
-		position: relative;
-		font-size: 0.8rem;
-		color: blue;
-		border: 1px solid red;
-		padding-top: 3px;
-		padding-bottom: 3px;
+		display: inline-block;
 	}
 }
-

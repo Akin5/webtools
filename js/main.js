@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(window).on('load', function () {
 	setTimeout(() => {
 		$('body').addClass('loaded');
 	}, 1000);
@@ -12,6 +12,8 @@ $(document).ready(function () {
 			$('.sidebar .collapse').collapse('hide');
 		}
 	});
+});
+$(document).ready(function () {
 	$('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function (
 		e,
 	) {

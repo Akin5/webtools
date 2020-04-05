@@ -47,4 +47,15 @@ $(document).ready(function () {
 			);
 		e.preventDefault();
 	});
+	$('#sidebarToggle').on('click', function (e) {
+		e.preventDefault();
+		let icon = $(this).find('.fa');
+		if (icon.hasClass('fa-bars')) {
+			icon.removeClass('fa-bars');
+			icon.addClass('fa-times');
+		} else {
+			icon.addClass('fa-bars');
+			icon.removeClass('fa-times');
+		}
+	});
 });

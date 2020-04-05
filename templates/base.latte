@@ -2,22 +2,9 @@
 <html lang="en">
 
 	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="Akin">
-		<meta name="description" content="Web Tools by BlackCoderCrush">
-		<meta name="theme-color" content="#4e73df">
-		{block title}{/block}
-		<!-- Icon -->
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="/favicon.ico" type="image/x-icon">
-		<!-- Css -->
-		<link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css" type="text/css">
-		<link rel="stylesheet" href="assets/css/sb-admin-2.min.css" type="text/css">
-		<link rel="stylesheet" href="assets/css/style.css" type="text/css">
-		<!-- Font -->
-		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		{include 'assets/meta.latte'}
+		{block title} {/block}
+		{include 'assets/css.latte'}
 	</head>
 
 	<body id="page-top" class="sidebar-toggled">
@@ -33,20 +20,10 @@
 				<div id="content">
 					{block content} {/block}
 				</div>
-				<footer class="sticky-footer bg-dark">
-					<div class="container my-auto shadow">
-						<div class="copyright text-center my-auto text-light">
-							<span>Copyright 2020 made with <i class="fa fa-heart text-danger"></i> BlackCoderCrush</span>
-						</div>
-					</div>
-				</footer>
+				{include 'layout/_footer.latte'}
 			</div>
 		</div>
-		<script src="assets/plugins/jquery/jquery.min.js"></script>
-		<script src="assets/plugins/jquery-easing/jquery.easing.min.js"></script>
-		<script src="assets/plugins/ionicon/dist/ionicons.js"></script>
-		<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-		<script src="assets/js/main.js"></script>
+		{include 'assets/js.latte'}
 	</body>
 
 </html>

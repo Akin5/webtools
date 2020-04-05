@@ -1,0 +1,54 @@
+{layout '../base.latte'}
+
+{block title}
+<title>Youtube Downloader | Web Tools BlackCoderCrush</title>
+{/block}
+
+{block content}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-8 mx-auto col-sm-12">
+			<div class="card shadow border border-left-primary">
+				<div class="card-header">
+					<h2 class="card-title">Youtube Converter</h2>
+				</div>
+				<div class="card-body">
+					<form action="" method="post">
+						<div class="form-group">
+							<label for="url">URL Youtube :</label>
+							<input id="url" class="form-control" type="url" name="url" placeholder="URL.." required>
+						</div>
+						<div class="form-group">
+							<label for="type">Convert To</label>
+							<select id="type" class="form-control" name="type">
+								<option selected>Type</option>
+								<option value="mp3">MP3</option>
+								<option value="mp4">MP4</option>
+								<option value="all">MP3 &amp; MP4</option>
+							</select>
+						</div>
+						<button id="btncon" class="btn btn-primary" type="submit" name="btncon">
+							<ion-icon name="send-outline"></ion-icon>
+							Convert
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8 mx-auto col-sm-12 mt-5 mb-3">
+			<div class="card shadow border border-left-info">
+				<div class="card-header">
+					<h2 class="card-title"><i class="fa fa-info-circle"></i> Info</h2>
+				</div>
+				<div class="card-body">
+					<ol class="list-group list-group-flush">
+						<li class="list-group-item">1. Jangan merusak web ini</li>
+						<li class="list-group-item">2. Masukan url youtube dengan benar!</li>
+						<li class="list-group-item">3. Jangan ada XSS yah...</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}

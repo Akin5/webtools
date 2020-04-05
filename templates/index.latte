@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}<title> Web Tools | BlackCoderCrush</title>{% endblock %}
-
-{% block content %}
+{layout 'base.latte'}
+{block title}
+<title>Web Tools | BlackCoderCrush</title>
+{/block}
+{block content}
 <div class="container-fluid">
 	<div class="d-flex justify-content-between align-items-center mb-4">
 		<h1 class="h3 text-gray-700 mb-0 text-center">Dashboard Tools</h1>
@@ -15,7 +15,7 @@
 		<div class="col-md-10 mx-auto">
 			<div class="home">
 				<div class="home-brand">
-					<img class="home-brand-profile" src="img/logo.jpg" alt="Logo">
+					<img class="home-brand-profile" src="assets/img/logo.jpg" alt="Logo">
 				</div>
 				<div class="home-body">
 					<h3 class="home-body-title">BlackCoderCrush</h3>
@@ -55,15 +55,15 @@
 							<span>PayPal</span>
 						</a>
 						<a class="home-body-media-link" href="#" target="_blank">
-							<ion-icon src="icons/ovo.svg" class="fa-1x"></ion-icon>
+							<ion-icon src="assets/icons/ovo.svg" class="fa-1x"></ion-icon>
 							<span>OVO</span>
 						</a>
 						<a class="home-body-media-link" href="#" target="_blank">
-							<ion-icon src="icons/gopay.svg" class="fa-1x"></ion-icon>
+							<ion-icon src="assets/icons/gopay.svg" class="fa-1x"></ion-icon>
 							<span>Gopay</span>
 						</a>
 						<a class="home-body-media-link" href="#" target="_blank">
-							<ion-icon src="icons/dana.svg" class="fa-1x"></ion-icon>
+							<ion-icon src="assets/icons/dana.svg" class="fa-1x"></ion-icon>
 							<span>Dana</span>
 						</a>
 					</div>
@@ -72,5 +72,4 @@
 		</div>
 	</div>
 </div>
-{% endblock %}
-
+{/block}

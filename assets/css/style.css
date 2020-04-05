@@ -313,4 +313,7 @@ ion-icon {
 	.home .home-body .home-body-media .home-body-media-link span {
 		display: inline-block;
 	}
+	.collapse .collapse-inner {
+		overflow-y: auto;
+	}
 }

@@ -1,23 +1,9 @@
 <?php
 
-require 'vendor/autoload.php';
-
-use \Twig\Environment;
-use \Twig\Loader\FilesystemLoader;
-
-$load = new FilesystemLoader(__DIR__ . '/templates');
-$page = new Environment($load);
-
-if (isset($_POST['submit'])) {
-	$nama = $_POST['nama'];
-	$data = [
-		'name' => $nama
-	];
-} else {
-	$data = [
-		'name' => 'akin'
-	];
-}
+require_once __DIR__ . '/vendor/autoload.php';
 
 
-echo $page->render("index.html.twig", $data);
+$router = new Bramus\Router\Router();
+$template = new \Latte\Engine();
+
+$template->render('templates/index.latte');

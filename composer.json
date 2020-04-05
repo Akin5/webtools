@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "twig/twig": "^3.0",
-        "symfony/asset": "^5.0"
+        "klein/klein": "^2.1",
+        "latte/latte": "^2.7",
+        "bramus/router": "^1.4"
     }
 }

@@ -2,29 +2,24 @@ $(window).on('load', function () {
 	setTimeout(() => {
 		$('body').addClass('loaded');
 	}, 1000);
-	setTimeout(() => {
-		$('[name="theme-color"]').attr('content', '#5a5c69');
-	}, 2000);
 	$(document).ready(function () {
-		const dm = localStorage.getItem('dm');
-		if (dm == 'dark') {
-			$('#wrapper, .sidebar, .navbar, .footer').toggleClass('dark');
-			localStorage.setItem('dm', 'dark');
+		if (window.localStorage.getItem('dm')) {
+			$('#wrapper, .sidebar, .navbar, .footer').addClass('dark');
+			$('#darkmode').attr('checked', 'checked');
 		} else {
-			$('#wrapper, .sidebar, .navbar, .footer').toggleClass('dark');
-			localStorage.setItem('dm', '');
+			$('#wrapper, .sidebar, .navbar, .footer').removeClass('dark');
 		}
-		$('#darkmode').click(function () {
-			if (dm == 'dark') {
-				$('#wrapper, .sidebar, .navbar, .footer').toggleClass('dark');
-				localStorage.setItem('dm', '');
+		$('#darkmode').on('change', function () {
+			if (this.checked) {
+				window.localStorage.setItem('dm', true);
+				$('#wrapper, .sidebar, .navbar, .footer').addClass('dark');
 			} else {
-				$('#wrapper, .sidebar, .navbar, .footer').toggleClass('dark');
-				localStorage.setItem('dm', 'dark');
+				window.localStorage.removeItem('dm');
+				$('#wrapper, .sidebar, .navbar, .footer').removeClass('dark');
 			}
 		});
 		$('#sidebarToggle, #sidebarToggleTop').on('click', function () {
-			$('body').toggleClass('sidebar-toggled');
+			$('body').toggleClass('sidebar-to');
 			$('.sidebar').toggleClass('toggled');
 			if ($('.sidebar').hasClass('toggled')) {
 				$('.sidebar .collapse').collapse('hide');

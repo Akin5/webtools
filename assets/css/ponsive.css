@@ -1,0 +1,44 @@
+@media only screen and (min-width: 786px) {
+	.sidebar-brand-text {
+		font-size: 1rem;
+	}
+	.img-brand {
+		display: none;
+		visibility: hidden;
+	}
+	.sidebar.toggled .sidebar-brand .sidebar-brand-icon .img-brand {
+		display: block;
+		visibility: visible;
+		overflow: visible;
+	}
+	.sidebar.toggled .sidebar-brand .sidebar-brand-text {
+		display: none;
+	}
+	.home .home-brand .home-brand-profile {
+		width: 50%;
+	}
+	.home .home-body .home-body-title {
+		font-size: 3rem;
+		font-weight: bold;
+	}
+	.home .home-body .home-body-slogan {
+		font-size: 1.8rem;
+		font-weight: bold;
+	}
+	.home .home-body .home-body-media {
+		justify-content: space-evenly;
+	}
+	.home .home-body .home-body-media .home-body-media-link {
+		font-size: 2rem;
+	}
+	.home .home-body .home-body-media .home-body-media-link span {
+		display: inline-block;
+	}
+	.collapse .collapse-inner {
+		overflow-y: auto;
+	}
+	.yt-thumbnail {
+		width: 150px;
+		height: 100px;
+	}
+}

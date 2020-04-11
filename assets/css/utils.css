@@ -1,0 +1,39 @@
+.collapse .collapse-inner {
+	overflow-y: scroll;
+	max-height: 230px;
+}
+.text-heading, 
+.text-heading + h3 {
+	text-align: center;
+	letter-spacing: 2px;
+	text-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.3);
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 500;
+}
+.img-profile {
+	border-radius: 50%;
+}
+.img-profile:hover {
+	animation: bounce 0.5s  forwards;
+}
+@keyframes bounce {
+	0% {
+		transform: scale3d(1, 1, 1);
+	}
+	50% {
+		transform: scale3d(1.05, 1.05, 1.05);
+	}
+	100% {
+		transform: scale3d(1, 1, 1);
+	}
+}
+.img-circle {
+	border-radius: 50% !important;
+}
+.img-brand {
+	width: 50px;
+	height: 50px;
+	box-sizing: border-box;
+	object-fit: cover;
+	border: 2px solid #ddd;
+}

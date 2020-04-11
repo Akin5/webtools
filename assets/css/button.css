@@ -1,0 +1,249 @@
+.btn-light {
+	color: var(--dark);
+	background-color: var(--light);
+}
+.btn-light:focus,
+.btn-light:active {
+	box-shadow: 0 0 0 0.25rem rgba(245, 246, 250, 0.25);
+	background-color: var(--light);
+	color: var(--dark);
+}
+.btn-download {
+	display: flex;
+	align-items: center;
+}
+.btn-download i {
+	margin-left: 3px;
+}
+.yt-thumbnail {
+	width: 50px;
+	height: 50px;
+}
+.btn-toggle {
+	position: relative;
+	width: 250px;
+	background: transparent !important;
+	display: inline-block;
+	border: 1px solid transparent;
+	margin-left: 8px;
+	user-select: none;
+	-webkit-user-select: none;
+	cursor: pointer;
+	vertical-align: middle;
+	padding: 5px;
+	outline: none;
+	-webkit-tap-highlight-color: transparent;
+}
+.btn-toggle:active,
+.btn-toggle:focus {
+	background: transparent !important;
+	outline: 0;
+	border: 1px solid transparent;
+	color: #fff;
+}
+.btn-bar {
+	position: relative;
+	height: 2px;
+	display: block;
+	border-radius: 1px;
+	background: #ccc;
+}
+.btn-bar:nth-of-type(1) {
+	margin-top: 7px;
+	top: -10px;
+	width: 100%;
+	animation: topbar-b 0.5s linear forwards;
+}
+.btn-bar:nth-of-type(2) {
+	opacity: 1;
+	width: 70%;
+	left: 10px;
+}
+.btn-bar:nth-of-type(2):not(.active) {
+	animation: leftbar-b 0.5s linear forwards;
+}
+.btn-bar:nth-of-type(3) {
+	bottom: 0;
+	margin-top: 10px;
+	width: 100%;
+	animation: bottombar-b 0.5s linear forwards;
+}
+.btn-toggle.active .btn-bar:nth-of-type(1) {
+	animation: topbar-x 0.5s linear forwards;
+}
+.btn-toggle.active .btn-bar:nth-of-type(2) {
+	opacity: 0;
+}
+.btn-toggle.active .btn-bar:nth-of-type(3) {
+	animation: bottombar-x 0.5s linear forwards;
+}
+@keyframes topbar-x {
+	0% {
+		top: 7px;
+		margin-top: 0;
+		transform: rotate(0);
+	} 
+	25% {
+		transform: rotate(145deg);
+	} 
+	75% {
+		transform: rotate(128deg);
+	} 
+	100% {
+		top: 7px;
+		margin-top: 0;
+		transform: rotate(135deg);
+	} 
+}
+@keyframes bottombar-x {
+	0% {
+		bottom: 7px;
+		transform: rotate(0);
+	} 
+	25% {
+		transform: rotate(-145deg);
+	} 
+	75% {
+		transform: rotate(-128deg);
+	} 
+	100% {
+		bottom: 7px;
+		transform: rotate(-135deg);
+	} 
+}
+@keyframes topbar-b {
+	0% {
+		top: -10px;
+		transform: rotate(135deg);
+	} 
+	25% {
+		transform: rotate(-15deg);
+	} 
+	75% {
+		transform: rotate(4deg);
+	} 
+	100% {
+		top: -10px;
+		transform: rotate(0);
+	} 
+}
+@keyframes leftbar-b {
+	0% {
+		left: 7px;
+		transform: rotate(-15deg);
+	}
+	25% {
+		transform: rotate(55deg);
+	}
+	75% {
+		transform: rotate(135deg);
+	}
+	100% {
+		left: 0;
+		transform: rotate(0deg);
+	}
+}
+@keyframes bottombar-b {
+	0% {
+		bottom: 0;
+		transform: rotate(-135deg);
+	} 
+	25% {
+		bottom: 0;
+		transform: rotate(-15deg);
+	} 
+	75% {
+		bottom: 0;
+		transform: rotate(-4deg);
+	} 
+	100% {
+		bottom: 0;
+		transform: rotate(0);
+	} 
+}
+.darkmode {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+	margin: 0 5px;
+}
+.darkmode .dm-control {
+	position: absolute;
+	top: 0;
+	left: 0;
+	appearance: none;
+	opacity: 0;
+	z-index: -1;
+}
+.darkmode .dm-label {
+	position: relative;
+	vertical-align: middle;
+	margin-bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.darkmode .dm-label-icon {
+	font-size: 1.5rem;
+	color: #fff;
+	padding: 5px;
+	margin: auto;
+	border-radius: 50%;
+	position: absolute;
+	color: #fff;
+}
+.darkmode .dm-label-icon:nth-of-type(1) {
+	animation: sunAnim1 0.2s ease forwards;
+}
+.darkmode .dm-label-icon:nth-of-type(2) {
+	animation: moonAnim2 0.2s ease forwards;
+}
+.darkmode .dm-control:checked + .dm-label .dm-label-icon:nth-of-type(1) {
+	animation: sunAnim2 0.2s ease forwards;
+}
+.darkmode .dm-control:checked + .dm-label .dm-label-icon:nth-of-type(2) {
+	animation: moonAnim1 0.2s ease forwards;
+}
+@keyframes sunAnim1 {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+@keyframes sunAnim2 {
+	0% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+}
+@keyframes moonAnim1 {
+	0% {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+@keyframes moonAnim2 {
+	0% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+}

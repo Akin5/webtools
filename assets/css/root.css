@@ -1,0 +1,24 @@
+body {
+	font-family: 'Quicksand', sans-serif;
+}
+#wrapper #content-wrapper {
+	transition: all 0.2s linear;
+}
+#wrapper #content-wrapper {
+	background-color: #fff;
+}
+#wrapper.dark #content-wrapper {
+	background-color: #15202b;
+}
+#wrapper.dark .home {
+	background-color: #052b4c;
+}
+ion-icon {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	line-height: 2;
+	display: inline-block;
+	text-rendering: auto;
+	font-style: normal;
+	font-size: 16px;
+}

@@ -1,0 +1,117 @@
+.home {
+	position: relative;
+	background-color: #f1f2f6;
+	background-clip: border-box;
+	border: 3px solid #ddd;
+	padding: 20px;
+	margin: 15px 10px;
+	border-radius: 0.315rem;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 0.10rem 1rem 0 rgba(0, 0, 0, 0.2);
+	word-wrap: break-word;
+}
+.home .home-header,
+.home .home-header  ion-icon {
+	font-size: 2rem;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: bold;
+}
+.home .home-brand {
+	position: relative;
+	max-width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.home .home-brand .home-brand-profile {
+	max-width: 100%;
+	border-radius: 50%;
+	box-shadow: 0 2px 8px rgba(200, 200, 200, 0.4);
+	border: 3px solid rgba(230, 230, 230, 0.8);
+}
+.home .home-body {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	flex-direction: column;
+	flex: 1;
+}
+.home .home-body .home-body-divider {
+	margin: 0 1rem 1rem;
+	border: 1px solid rgba(100, 100, 100, 0.3);
+}
+.home .home-body .home-body-title,
+.home .home-body .home-body-slogan {
+	position: relative;
+	flex: 1;
+	text-align: center;
+	margin-top: 15px;
+}
+.home .home-body .home-body-title {
+	font-size: 1.8rem;
+	font-weight: 400;
+}
+.home .home-body .home-body-slogan {
+	font-size: 1.3rem;
+	font-weight: 400;
+}
+.home .home-body .home-body-media {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+	align-items: stretch;
+}
+.home .home-body .home-body-media .home-body-media-link{
+	color: #34495e;
+	font-weight: bold;
+	font-size: 1.5rem;
+	transition: color 0.2s ease, transform 0.2s ease-in-out;
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	padding: 5px;
+	box-sizing: border-box;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 3px;
+}
+a.fab {
+	text-decoration: none;
+}
+.home .home-body .home-body-media .home-body-media-link:hover {
+	color: #3498db;
+	transform: scale(1.2);
+}
+.home .home-body .home-body-media .home-body-media-link span {
+	position: relative;
+	font-size: 0.8rem;
+	color: #2d3436;
+	padding: 0 3px 3px;
+	display: none;
+}
+.home .home-body .home-body-link {
+	position: relative;
+	font-size: 1.5rem;
+	font-weight: 500;
+	text-transform: capitalize;
+	margin: 0 1rem 1rem;
+	padding: 0 1rem 0;
+	color: var(--dark);
+	text-decoration: none;
+	transition: color 0.5s ease, text-decoration 0.5s ease, transform 0.5s ease-in-out;
+	pointer-events: auto;
+	box-shadow: border-box;
+	text-align: left;
+	transition: all 0.2s ease-in-out;
+}
+.home .home-body .home-body-link:hover:after {
+	content: '#';
+	position: absolute;
+	color: var(--primary);
+	margin-left: 4px;
+	text-decoration: underline;
+}

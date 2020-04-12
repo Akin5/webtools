@@ -62,7 +62,7 @@ $(window).on('load', function () {
 					required: 'URL ini harus di isi !',
 					url: 'Masukan URL dengan benar !',
 				},
-				typeyt: 'Tipe harus di isi !',
+				typeyt: 'Field ini harus di isi !',
 			},
 			errorElement: 'div',
 			errorPlacement: function (err, el) {

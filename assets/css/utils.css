@@ -43,7 +43,7 @@
 }
 .error {
 	color: var(--danger);
-	font-size: 1rem;
+	font-size: 83%;
 	font-weight: bold;
 	position: relative;
 	text-align: left;

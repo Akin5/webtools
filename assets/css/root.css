@@ -20,9 +20,7 @@ ion-icon {
 	background-color: #15202b;
 }
 #wrapper.dark .container-fluid h1 {
-	/* color: #f3f3f3; */
 	color: #f3f3f3;
-	/* color: #05222e; */
 }
 #wrapper.dark .home {
 	border: 3px solid #05202b;
@@ -58,6 +56,8 @@ ion-icon {
 #wrapper.dark .card {
 	background-color: #213040;
 	border-color: #213040;
+	background: linear-gradient(315deg, #233344, #1e2b3a);
+	box-shadow:  -20px -20px 40px #1c2936, 20px 20px 40px #26374a;
 }
 #wrapper.dark .border-left-primary {
 	border-left-color: #1e3799 !important;
@@ -68,12 +68,13 @@ ion-icon {
 #wrapper.dark .card .card-header {
 	background-color: #05202b;
 	border-bottom-color: #05202b;
-	color: #f3f3f3;
+	color: #f3f3f3 !important;
 }
 #wrapper.dark .list-group.list-group-flush .list-group-item {
-	background-color: #213040;
+	/* background-color: #213040; */
+	background: transparent;
 	color: #f1f2f6;
-	border-bottom-color: #f2f3f3;
+	border-bottom-color: #60a3bc;
 }
 #wrapper.dark .form-control {
 	background: #213040;

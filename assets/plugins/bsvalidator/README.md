@@ -1,76 +1,78 @@
-# BootstrapValidator - [v0.5.2](http://bootstrapvalidator.com/getting-started/#download)
+[jQuery Validation Plugin](https://jqueryvalidation.org/) - Form validation made easy
+================================
 
-[http://bootstrapvalidator.com](http://bootstrapvalidator.com) - The best jQuery plugin to validate form fields, designed to use with [Bootstrap 3](http://getbootstrap.com).
+[![release](https://img.shields.io/github/release/jquery-validation/jquery-validation.svg)](https://github.com/jquery-validation/jquery-validation/releases/latest)
+[![Build Status](https://secure.travis-ci.org/jquery-validation/jquery-validation.svg)](https://travis-ci.org/jquery-validation/jquery-validation)
+[![devDependency Status](https://david-dm.org/jquery-validation/jquery-validation/dev-status.svg?theme=shields.io)](https://david-dm.org/jquery-validation/jquery-validation#info=devDependencies)
+[![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/jquery-validation/badge?style=rounded)](https://www.jsdelivr.com/package/npm/jquery-validation)
 
-It's developed from scratch by [@nghuuphuoc](http://twitter.com/nghuuphuoc).
+The jQuery Validation Plugin provides drop-in validation for your existing forms, while making all kinds of customizations to fit your application really easy.
 
-__Required__: [jQuery](http://jquery.com/) and [Bootstrap 3](http://getbootstrap.com/)
+## Getting Started
 
-![Screenshot](screenshots/demo.gif)
+### Downloading the prebuilt files
 
-## [Help the project](https://pledgie.com/campaigns/24885)
+Prebuilt files can be downloaded from https://jqueryvalidation.org/
 
-I've been spending a lot of time to work on this plugin. If it is useful to you, please consider to help the project by making a small donation:
+### Downloading the latest changes
 
-<a href="https://pledgie.com/campaigns/24885"><img alt="Click here to lend your support to: BootstrapValidator and make a donation at pledgie.com!" src="https://pledgie.com/campaigns/24885.png?skin_name=chrome" border="0" /></a>
+The unreleased development files can be obtained by:
 
-Also, you can make me feel happy by [tweeting](https://twitter.com/intent/tweet?hashtags=javascript,jquery,twbootstrap&original_referer=http://github.com/nghuuphuoc/bootstrapvalidator&text=BootstrapValidator%20is%20the%20best%20jQuery%20plugin%20to%20validate%20form%20fields&url=http://bootstrapvalidator.com) about it and [staring](https://github.com/nghuuphuoc/bootstrapvalidator/stargazers) the project on Github.
+ 1. [Downloading](https://github.com/jquery-validation/jquery-validation/archive/master.zip) or Forking this repository
+ 2. [Setup the build](CONTRIBUTING.md#build-setup)
+ 3. Run `grunt` to create the built files in the "dist" directory
 
-## Live demo
+### Including it on your page
 
-http://bootstrapvalidator.com/examples/
+Include jQuery and the plugin on a page. Then select a form to validate and call the `validate` method.
 
-There are also many examples located in the [demo](demo) directory.
-
-You also can run the ```demo``` locally by:
-
-* Clone the repo: ```git clone https://github.com/nghuuphuoc/bootstrapvalidator.git```
-* Go to the cloned directory and run the command: ```python -m SimpleHTTPServer 8000```
-* Access the demo at ```http://localhost:8000/demo/the_demo_file_here.html```
-
-## Features
-
-See [official website](http://bootstrapvalidator.com) for the full list of features
-
-## Download
-
-* Latest version: [v0.5.2](http://bootstrapvalidator.com/getting-started/#download), released on 2014-09-25
-* For older versions, look at the [Releases](https://github.com/nghuuphuoc/bootstrapvalidator/releases) page
-* Release History: Look at the [Change Log](CHANGELOG.md)
-
-## Documentation
-
-* [Official website](http://bootstrapvalidator.com)
-* [Official website source](https://github.com/nghuuphuoc/bootstrapvalidator/tree/docs)
-
-## Author
-
-The __BootstrapValidator__ plugin is written by Nguyen Huu Phuoc, aka @nghuuphuoc
-
-* [http://twitter.com/nghuuphuoc](http://twitter.com/nghuuphuoc)
-* [http://github.com/nghuuphuoc](http://github.com/nghuuphuoc)
-
-Big thanks to the [contributors](CONTRIBUTORS.md).
-
+```html
+<form>
+	<input required>
+</form>
+<script src="jquery.js"></script>
+<script src="jquery.validate.js"></script>
+<script>
+    $("form").validate();
+</script>
 ```
-The MIT License (MIT)
 
-Copyright (c) 2013 - 2014 Nguyen Huu Phuoc
+Alternatively include jQuery and the plugin via requirejs in your module.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```js
+define(["jquery", "jquery.validate"], function( $ ) {
+	$("form").validate();
+});
 ```
+
+For more information on how to setup a rules and customizations, [check the documentation](https://jqueryvalidation.org/documentation/).
+
+## Reporting issues and contributing code
+
+See the [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+**IMPORTANT NOTE ABOUT EMAIL VALIDATION**. As of version 1.12.0 this plugin is using the same regular expression that the [HTML5 specification suggests for browsers to use](https://html.spec.whatwg.org/multipage/forms.html#valid-e-mail-address). We will follow their lead and use the same check. If you think the specification is wrong, please report the issue to them. If you have different requirements, consider [using a custom method](https://jqueryvalidation.org/jQuery.validator.addMethod/).
+In case you need to adjust the built-in validation regular expression patterns, please [follow the documentation](https://jqueryvalidation.org/jQuery.validator.methods/).
+
+**IMPORTANT NOTE ABOUT REQUIRED METHOD**. As of version 1.14.0 this plugin stops trimming white spaces from the value of the attached element. If you want to achieve the same result, you can use the [`normalizer`](https://jqueryvalidation.org/normalizer/) that can be used to transform the value of an element before validation. This feature was available since `v1.15.0`. In other words, you can do something like this:
+``` js
+$("#myForm").validate({
+	rules: {
+		username: {
+			required: true,
+			// Using the normalizer to trim the value of the element
+			// before validating it.
+			//
+			// The value of `this` inside the `normalizer` is the corresponding
+			// DOMElement. In this example, `this` references the `username` element.
+			normalizer: function(value) {
+				return $.trim(value);
+			}
+		}
+	}
+});
+```
+
+## License
+Copyright &copy; Jörn Zaefferer<br>
+Licensed under the MIT license.

@@ -37,3 +37,16 @@
 	object-fit: cover;
 	border: 2px solid #ddd;
 }
+.close:focus,
+.close:active {
+	outline: none;
+}
+.error {
+	color: var(--danger);
+	font-size: 1rem;
+	font-weight: bold;
+	position: relative;
+	text-align: left;
+	display: block;
+	line-height: 1;
+}

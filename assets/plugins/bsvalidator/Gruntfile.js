@@ -1,126 +1,213 @@
-module.exports = function(grunt) {
-    grunt.initConfig({
-        // ---
-        // Variables
-        // ---
+/*jshint node:true*/
+module.exports = function( grunt ) {
 
-        pkg: grunt.file.readJSON('package.json'),
+"use strict";
 
-        dirs: {
-            src: 'src',
-            dist: 'dist',
-            test: 'test'
-        },
+var banner,
+	umdStart,
+	umdMiddle,
+	umdEnd,
+	umdStandardDefine,
+	umdAdditionalDefine,
+	umdLocalizationDefine;
 
-        banner: [
-            '/*!',
-            ' * BootstrapValidator (<%= pkg.homepage %>)',
-            ' * <%= pkg.description %>',
-            ' *',
-            ' * @version     v<%= pkg.version %>, built on <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %>',
-            ' * @author      <%= pkg.author.url %>',
-            ' * @copyright   (c) 2013 - <%= grunt.template.today("yyyy") %> Nguyen Huu Phuoc',
-            ' * @license     MIT',
-            ' */\n'
-        ].join('\n'),
+banner = "/*!\n" +
+	" * jQuery Validation Plugin v<%= pkg.version %>\n" +
+	" *\n" +
+	" * <%= pkg.homepage %>\n" +
+	" *\n" +
+	" * Copyright (c) <%= grunt.template.today('yyyy') %> <%= pkg.author.name %>\n" +
+	" * Released under the <%= _.map(pkg.licenses, 'type').join(', ') %> license\n" +
+	" */\n";
 
-        // ---
-        // Tasks
-        // ---
+// Define UMD wrapper variables
 
-        copy: {
-            main: {
-                files: [
-                    { cwd: '<%= dirs.src %>/css', src: '**', dest: '<%= dirs.dist %>/css', expand: true, flatten: true, filter: 'isFile' },
-                    { cwd: '<%= dirs.src %>/js/language', src: '**', dest: '<%= dirs.dist %>/js/language', expand: true, flatten: true, filter: 'isFile' }
-                ]
-            }
-        },
+umdStart = "(function( factory ) {\n" +
+	"\tif ( typeof define === \"function\" && define.amd ) {\n";
 
-        cssmin: {
-            minify: { expand: true, cwd: '<%= dirs.src %>/css/', src: ['*.css'], dest: '<%= dirs.dist %>/css/', ext: '.min.css' },
-            add_banner: {
-                options: {
-                    stripBanners: true,
-                    banner: '<%= banner %>'
-                },
-                files: {
-                    '<%= dirs.dist %>/css/bootstrapValidator.min.css': ['<%= dirs.src %>/css/bootstrapValidator.css']
-                }
-            }
-        },
+umdMiddle = "\t} else if (typeof module === \"object\" && module.exports) {\n" +
+	"\t\tmodule.exports = factory( require( \"jquery\" ) );\n" +
+	"\t} else {\n" +
+	"\t\tfactory( jQuery );\n" +
+	"\t}\n" +
+	"}(function( $ ) {\n\n";
 
-        concat: {
-            source: {
-                options: {
-                    separator: ';',
-                    stripBanners: true,
-                    banner: '<%= banner %>'
-                },
-                src: ['<%= dirs.src %>/js/bootstrapValidator.js', '<%= dirs.src %>/js/validator/*.js'],
-                dest: '<%= dirs.dist %>/js/bootstrapValidator.js'
-            },
-            test: {
-                src: ['<%= dirs.test %>/spec/*.js', '<%= dirs.test %>/spec/validator/*.js'],
-                dest: '<%= dirs.test %>/spec.js'
-            }
-        },
+umdEnd = "return $;" +
+	"\n}));";
 
-        uglify: {
-            options: {
-                banner: '<%= banner %>'
-            },
-            build: {
-                src: ['<%= dirs.dist %>/js/bootstrapValidator.js'],
-                dest: '<%= dirs.dist %>/js/bootstrapValidator.min.js'
-            }
-        },
+umdStandardDefine = "\t\tdefine( [\"jquery\"], factory );\n";
+umdAdditionalDefine = "\t\tdefine( [\"jquery\", \"./jquery.validate\"], factory );\n";
+umdLocalizationDefine = "\t\tdefine( [\"jquery\", \"../jquery.validate\"], factory );\n";
 
-        jshint: {
-            all: [
-                '<%= dirs.src %>/js/**/*.js'
-            ],
-            options: {
-                browser: true,
-                camelcase: true,
-                curly: true,
-                eqeqeq: true,
-                eqnull: true,
-                es3: true,
-                expr: true,
-                laxbreak: true,   // Allow line breaking before && or ||
-                loopfunc: true,
-                newcap: true,
-                noarg: true,
-                onevar: true,
-                sub: true,
-                undef: true,
-                white: true
-            }
-        },
+grunt.initConfig( {
+	pkg: grunt.file.readJSON( "package.json" ),
+	concat: {
 
-        watch: {
-            source: {
-                files: ['<%= dirs.src %>/css/**', '<%= dirs.src %>/js/**'],
-                tasks: ['build'],
-                options: {
-                    spawn: false
-                }
-            },
-            test: {
-                files: ['<%= dirs.test %>/spec/**'],
-                tasks: ['concat:test']
-            }
-        }
-    });
+		// Used to copy to dist folder
+		dist: {
+			options: {
+				banner: banner +
+					umdStart +
+					umdStandardDefine +
+					umdMiddle,
+				footer: umdEnd
+			},
+			files: {
+				"dist/jquery.validate.js": [ "src/core.js", "src/*.js" ]
+			}
+		},
+		extra: {
+			options: {
+				banner: banner +
+					umdStart +
+					umdAdditionalDefine +
+					umdMiddle,
+				footer: umdEnd
+			},
+			files: {
+				"dist/additional-methods.js": [ "src/additional/additional.js", "src/additional/*.js" ]
+			}
+		}
+	},
+	uglify: {
+		options: {
+			preserveComments: false,
+			banner: "/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - " +
+				"<%= grunt.template.today('m/d/yyyy') %>\n" +
+				" * <%= pkg.homepage %>\n" +
+				" * Copyright (c) <%= grunt.template.today('yyyy') %> <%= pkg.author.name %>;" +
+				" Licensed <%= _.map(pkg.licenses, 'type').join(', ') %> */\n"
+		},
+		dist: {
+			files: {
+				"dist/additional-methods.min.js": "dist/additional-methods.js",
+				"dist/jquery.validate.min.js": "dist/jquery.validate.js"
+			}
+		},
+		all: {
+			expand: true,
+			cwd: "dist/localization",
+			src: "**/*.js",
+			dest: "dist/localization",
+			ext: ".min.js"
+		}
+	},
+	compress: {
+		dist: {
+			options: {
+				mode: "zip",
+				level: 1,
+				archive: "dist/<%= pkg.name %>-<%= pkg.version %>.zip",
+				pretty: true
+			},
+			src: [
+				"changelog.txt",
+				"demo/**/*.*",
+				"dist/**/*.js",
+				"Gruntfile.js",
+				"lib/**/*.*",
+				"package.json",
+				"README.md",
+				"src/**/*.*",
+				"test/**/*.*"
+			]
+		}
+	},
+	qunit: {
+		files: "test/index.html"
+	},
+	jshint: {
+		options: {
+			jshintrc: true
+		},
+		core: {
+			src: "src/**/*.js"
+		},
+		test: {
+			src: [ "test/*.js", "test/additional/*.js" ]
+		},
+		grunt: {
+			src: "Gruntfile.js"
+		}
+	},
+	watch: {
+		options: {
+			atBegin: true
+		},
+		src: {
+			files: "<%= jshint.core.src %>",
+			tasks: [
+				"concat"
+			]
+		}
+	},
+	jscs: {
+		all: [ "<%= jshint.core.src %>", "<%= jshint.test.src %>", "<%= jshint.grunt.src %>" ]
+	},
+	copy: {
+		dist: {
+			options: {
 
-    grunt.registerTask('default', 'build');
-    grunt.registerTask('build',   ['copy', 'cssmin', 'concat', 'uglify']);
+				// Append UMD wrapper
+				process: function( content ) {
+					return umdStart + umdLocalizationDefine + umdMiddle + content + umdEnd;
+				}
+			},
+			src: "src/localization/*",
+			dest: "dist/localization",
+			expand: true,
+			flatten: true,
+			filter: "isFile"
+		}
+	},
+	replace: {
+		dist: {
+			src: "dist/**/*.min.js",
+			overwrite: true,
+			replacements: [
+				{
+					from: "./jquery.validate",
+					to: "./jquery.validate.min"
+				}
+			]
+		}
+	},
 
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+	// Generate the sub-resource integrity hashes of the distribution files
+	sri: {
+		options: {
+			algorithms: [ "sha256", "sha384", "sha512" ],
+
+			// The target json file
+			dest: "dist/jquery-validation-sri.json",
+
+			// Stringify the JSON output in a pretty format
+			pretty: true
+		},
+
+		all: {
+			src: [
+				"dist/jquery.validate.{min.js,js}",
+				"dist/additional-methods.{min.js,js}",
+				"dist/localization/*.js"
+			]
+		}
+	}
+} );
+
+grunt.loadNpmTasks( "grunt-contrib-jshint" );
+grunt.loadNpmTasks( "grunt-contrib-qunit" );
+grunt.loadNpmTasks( "grunt-contrib-uglify" );
+grunt.loadNpmTasks( "grunt-contrib-concat" );
+grunt.loadNpmTasks( "grunt-contrib-compress" );
+grunt.loadNpmTasks( "grunt-contrib-watch" );
+grunt.loadNpmTasks( "grunt-jscs" );
+grunt.loadNpmTasks( "grunt-contrib-copy" );
+grunt.loadNpmTasks( "grunt-text-replace" );
+grunt.loadNpmTasks( "grunt-sri" );
+
+grunt.registerTask( "default", [ "concat", "copy", "jscs", "jshint", "qunit" ] );
+grunt.registerTask( "release", [ "default", "uglify", "replace", "compress", "sri" ] );
+grunt.registerTask( "start", [ "concat", "watch" ] );
+
 };

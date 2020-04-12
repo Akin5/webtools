@@ -49,5 +49,32 @@ $(window).on('load', function () {
 				);
 			e.preventDefault();
 		});
+		$('#ytform').validate({
+			rules: {
+				urlyt: {
+					url: true,
+					required: true,
+				},
+				typeyt: 'required',
+			},
+			messages: {
+				urlyt: {
+					required: 'URL ini harus di isi !',
+					url: 'Masukan URL dengan benar !',
+				},
+				typeyt: 'Tipe harus di isi !',
+			},
+			errorElement: 'div',
+			errorPlacement: function (err, el) {
+				err.addClass('invalid-feedback');
+				err.insertAfter(el);
+			},
+			highlight: function (element) {
+				$(element).addClass('is-invalid').removeClass('is-valid');
+			},
+			unhighlight: function (element) {
+				$(element).addClass('is-valid').removeClass('is-invalid');
+			},
+		});
 	});
 });

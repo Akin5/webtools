@@ -10,8 +10,39 @@ body {
 #wrapper.dark #content-wrapper {
 	background-color: #15202b;
 }
+#wrapper.dark .container-fluid h1 {
+	color: #f1f2f6;
+}
 #wrapper.dark .home {
-	background-color: #052b4c;
+	border: 3px solid #05202b;
+	background: linear-gradient(315deg, #05222e, #051d27);
+	box-shadow:  -13px -13px 25px #04171f,  13px 13px 25px #062937;
+}
+#wrapper.dark .home .home-brand .home-brand-profile {
+	box-shadow: 0 2px 15px rgba(241, 242, 243, 0.4);
+	border: 3px solid rgba(241, 242, 243, 0.4);
+}
+#wrapper.dark .home .home-body .home-body-title,
+#wrapper.dark .home .home-body .home-body-slogan {
+	color: #f1f2f6;
+}
+#wrapper.dark .home .home-body .home-body-divider {
+	border-color: rgba(241, 242, 242, 0.3)
+}
+#wrapper.dark .home .home-body .home-body-media .home-body-media-link {
+	color: #7f8fa6;
+}
+#wrapper.dark .home .home-body .home-body-media .home-body-media-link:hover {
+	color: #f1f2f6;
+}
+#wrapper.dark .home .home-body .home-body-media .home-body-media-link span {
+	color: rgba(241, 242, 243, 0.4);
+}
+#wrapper.dark .home .home-body .home-body-media .home-body-media-link:hover span {
+	color: rgba(245, 246, 250, 1);
+}
+#wrapper.dark .home .home-body .home-body-link {
+	color: rgba(245, 246, 250, 1);
 }
 ion-icon {
 	-moz-osx-font-smoothing: grayscale;

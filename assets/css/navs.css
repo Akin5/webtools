@@ -29,7 +29,8 @@
 	color: #fff;
 }
 .sidebar .nav-item .collapse .collapse-inner {
-	box-shadow: 0 0.15rem 1.75rem 0 rgba(0, 0, 0, 0.2);
+	background: linear-gradient(315deg, #ffffff, #f1f2f5);
+	box-shadow:  7px 7px 14px #bababd, -7px -7px 14px rgba(255, 255, 255, 0.5);
 }
 .sidebar .nav-item .collapse .collapse-inner .collapse-item {
 	transform: scale(0.9);
@@ -83,8 +84,8 @@
 	background-image: linear-gradient(40deg, rgba(240, 240, 240, 0.1) 16%,rgba(240, 240, 240, 0.1) 17%,rgba(240, 240, 240, 0.05) 17%,rgba(240, 240, 240, 0.05) 23%, transparent 10%, transparent 75%,rgba(240, 240, 240, 0.05) 78%,rgba(240, 240, 240,  0.05) 84%,rgba(240, 240, 240, 0.1) 84%, rgba(240, 240, 240, 0.1));
 }
 .sidebar.dark .nav-item .collapse .collapse-inner {
-	background: linear-gradient(135deg, #052b4c 25%, #213040 75%);
-	box-shadow: -2px 2px 5px #252a2e, 2px -2px 5px #434a52;
+	background: linear-gradient(315deg, #052e3e, #052734);
+	box-shadow:  -8px -8px 16px #052734, 8px 8px 16px #062f40;
 }
 .sidebar.dark .nav-item .collapse .collapse-inner .collapse-item,
 .sidebar.dark .nav-item .collapsing .collapse-inner .collapse-item {

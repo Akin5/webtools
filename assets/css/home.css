@@ -1,14 +1,14 @@
 .home {
 	position: relative;
-	background-color: #f1f2f6;
 	background-clip: border-box;
-	border: 3px solid #ddd;
+	border: 3px solid #d9dadd;
 	padding: 20px;
 	margin: 15px 10px;
 	border-radius: 0.315rem;
 	display: flex;
 	flex-direction: column;
-	box-shadow: 0 0.10rem 1rem 0 rgba(0, 0, 0, 0.2);
+	background: linear-gradient(145deg, #ffffff, #d9dadd);
+	box-shadow:  16px 16px 33px #c1c2c5,  -16px -16px 33px #ffffff;
 	word-wrap: break-word;
 }
 .home .home-header,
@@ -27,8 +27,8 @@
 .home .home-brand .home-brand-profile {
 	max-width: 100%;
 	border-radius: 50%;
-	box-shadow: 0 2px 8px rgba(200, 200, 200, 0.4);
-	border: 3px solid rgba(230, 230, 230, 0.8);
+	box-shadow: 0 2px 15px rgba(20, 20, 20, 0.4);
+	border: 3px solid rgba(20, 20, 20, 0.2);
 }
 .home .home-body {
 	position: relative;
@@ -65,7 +65,7 @@
 	width: 100%;
 	align-items: stretch;
 }
-.home .home-body .home-body-media .home-body-media-link{
+.home .home-body .home-body-media .home-body-media-link {
 	color: #34495e;
 	font-weight: bold;
 	font-size: 1.5rem;

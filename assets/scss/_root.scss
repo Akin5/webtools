@@ -1,0 +1,83 @@
+body {
+	font-family: 'Quicksand', sans-serif;
+}
+ion-icon {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	line-height: 2;
+	display: inline-block;
+	text-rendering: auto;
+	font-style: normal;
+	font-size: 16px;
+}
+#wrapper {
+	#content-wrapper {
+		transition: all 0.1s ease-in-out;
+		background-color: #fff;
+	}
+
+	&.dark {
+		#content-wrapper {
+			background-color: #15202b;
+		}
+		.home-heading {
+			color: #f3f3f3;
+			font-size: 1.5rem;
+			@include media-breakpoint(md) {
+				font-size: 3rem;
+				font-weight: bold;
+			}
+		}
+		.home {
+			border-color: #d1d3e2;
+			background: linear-gradient(315deg, #05222e, #051d27);
+			box-shadow:  -13px -13px 25px #04171f,  13px 13px 25px #062937;
+		}
+		.home-brand-profile {
+			box-shadow: 0 2px 15px rgba(241, 242, 243, 0.4);
+			border: 3px solid rgba(241, 242, 243, 0.4);
+		}
+		.home-body-title, .home-body-slogan {
+			color: #f1f2f6;
+		}
+		.home-body-divider {
+			border-color: rgba(241, 242, 242, 0.3);
+		}
+		.home-body-media-link {
+			color: #7f8fa6;
+
+			&:hover {
+				color: #f1f2f6;
+				span {
+					color: rgba(245, 246, 250, 1);
+				}
+			}
+
+			span {
+				color: rgba(241, 242, 243, 0.4);
+			}
+		}
+		.home-body-link {
+			color: rgba(245, 246, 250, 1);
+		}
+		.card {
+			background-color: #213040;
+			border-color: #213040;
+			background: linear-gradient(315deg, #233344, #1e2b3a);
+			box-shadow:  -20px -20px 40px #1c2936, 20px 20px 40px #26374a;
+		}
+		.card-header {
+			background-color: #05202b;
+			border-bottom-color: #05202b;
+			color: #f3f3f3 !important;
+		}
+		.list-group-flush .list-group-item {
+			background: transparent;
+			color: #f1f2f6;
+			border-bottom-color: #60a3bc;
+		}
+		label {
+			color: rgba(245, 245, 245, 0.8);
+		}
+	}
+}

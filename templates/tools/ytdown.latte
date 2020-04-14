@@ -15,14 +15,15 @@
 					<h4 class="card-title text-primary d-md-none"><i class="fab fa-youtube mr-2 text-danger"></i>Youtube Downloader</h4>
 				</div>
 				<div class="card-body">
-					{if $error}
 					<div class="alert alert-danger alert-dimissible fade show" style="box-shadow: 0 0.15rem 1rem 0 rgba(231, 74, 59, 0.2), inset 0 -0.05rem 1rem 0 rgba(231, 74, 59, 0.10)">
-						<strong>{$message}</strong>
+						<strong id="message">
+							<i class="fas mr-2 fa-exclamation-triangle"></i>
+							Hai Tampan :v
+						</strong>
 						<button class="close" data-dismiss="alert">
 							<span>&times;</span>
 						</button>
 					</div>
-					{/if}
 					<div class="row">
 						<div class="col-sm-12 col-md-10 mx-auto">
 							<form action="" method="post" id="ytform" class="mt-3">

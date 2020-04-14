@@ -1,21 +1,24 @@
 $(window).on('load', function () {
+	const comp = $(
+		'#wrapper, .sidebar, .navbar, .footer, .form-control, .custom-select',
+	);
 	setTimeout(() => {
 		$('body').addClass('loaded');
 		window.localStorage.getItem('dm')
-			? ($('#wrapper, .sidebar, .navbar, .footer').addClass('dark'),
+			? (comp.addClass('dark'),
 			  $('#darkmode').attr('checked', 'checked'),
 			  $('[name="theme-color"]').attr('content', '#213040'))
-			: ($('#wrapper, .sidebar, .navbar, .footer').removeClass('dark'),
+			: (comp.removeClass('dark'),
 			  $('[name="theme-color"]').attr('content', '#4e73df'));
 	}, 1000);
 	$(document).ready(function () {
 		$('#darkmode').on('change', function () {
 			this.checked
 				? (window.localStorage.setItem('dm', true),
-				  $('#wrapper, .sidebar, .navbar, .footer').addClass('dark'),
+				  comp.addClass('dark'),
 				  $('[name="theme-color"]').attr('content', '#213040'))
 				: (window.localStorage.removeItem('dm'),
-				  $('#wrapper, .sidebar, .navbar, .footer').removeClass('dark'),
+				  comp.removeClass('dark'),
 				  $('[name="theme-color"]').attr('content', '#4e73df'));
 		});
 		$('#sidebarToggle, #sidebarToggleTop').on('click', function () {
@@ -25,29 +28,6 @@ $(window).on('load', function () {
 				$('.sidebar .collapse').collapse('hide');
 			}
 			$(this).toggleClass('active');
-		});
-
-		$(document).on('scroll', function () {
-			var scrollDistance = $(this).scrollTop();
-			if (scrollDistance > 100) {
-				$('.scroll-to-top').fadeIn();
-			} else {
-				$('.scroll-to-top').fadeOut();
-			}
-		});
-
-		$('a.scroll-to-top').click(function (e) {
-			var $anchor = $(this);
-			$('html, body')
-				.stop()
-				.animate(
-					{
-						scrollTop: $($anchor.attr('href')).offset().top,
-					},
-					1000,
-					'easeInOutExpo',
-				);
-			e.preventDefault();
 		});
 		$('#ytform').validate({
 			rules: {
@@ -74,6 +54,35 @@ $(window).on('load', function () {
 			},
 			unhighlight: function (element) {
 				$(element).addClass('is-valid').removeClass('is-invalid');
+				$(element)
+					.find('.invalid-feedback')
+					.removeClass('invalid-fedback error')
+					.addClass('valid-feedback valid');
+			},
+			submitHandler: function (form, e) {
+				e.preventDefault();
+				// Get URL
+				const urlyt = $('#urlyt').val();
+				const typet = $('#typeyt').val();
+
+				$.ajax({
+					method: 'POST',
+					dataType: 'json',
+					data: {
+						url: urlyt,
+						type: typeyt,
+					},
+					url: '/tools/ytdown',
+					beforeSend: function () {
+						$('#btnyt').find('span').text('Loading..');
+					},
+					complete: function () {
+						$('#btnyt').find('span').text('Convert Now');
+					},
+					success: function (data) {
+						alert(1);
+					},
+				});
 			},
 		});
 	});

@@ -1,0 +1,9 @@
+
+$border_dark_theme_color: () !default;
+$border_dark_theme_color: map-merge(
+	(
+		"primary": #1e3799,
+		"info": #38adad
+	),
+	$border_dark_theme_color
+);

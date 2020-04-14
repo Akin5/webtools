@@ -32,7 +32,7 @@ $router->mount('/tools', function () use ($router, $template) {
 			'tools' => true
 		];
 		if (isset($_POST['btnyt'])) {
-			if (!empty($_POST['type'])) {
+			if (!empty($_POST['typeyt'])) {
 				if (isset($_POST['urlyt'])) {
 					$url = $_POST['urlyt'];
 					$reg = preg_match("/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\-_]+)/i", $url);
@@ -70,4 +70,17 @@ $router->match('GET', '/about', function () {
 });
 
 $router->run();
+?>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<div></div>
+</body>
+
+</html>

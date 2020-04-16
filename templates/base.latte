@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		{include 'assets/meta.latte'}
+		{block title} {/block}
+		{include 'assets/css.latte'}
+	</head>
+
+	<body id="page-top" class="sidebar-toggled">
+		<div id="wrapper">
+			<div id="loader-wrapper">
+				<div class="loader"></div>
+				<div class="loader-sec-right"></div>
+				<div class="loader-sec-left"></div>
+			</div>
+			{include 'layout/_sidebar.latte'}
+			<div id="content-wrapper" class="d-flex flex-column">
+				{include 'layout/_navbar.latte'}
+				<div id="content">
+					{block content} {/block}
+				</div>
+				{include 'layout/_footer.latte'}
+			</div>
+		</div>
+		{include 'assets/js.latte'}
+	</body>
+
+</html>

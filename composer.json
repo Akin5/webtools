@@ -1,0 +1,18 @@
+{
+	"name": "4k17/webtools",
+	"description": "Web Tools create by 4k17 - BlackCoderCrush",
+	"type": "project",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "akin5",
+			"email": "akin@programmer.net"
+		}
+	],
+	"require": {
+		"latte/latte": "^2.7",
+		"bramus/router": "^1.4",
+		"tracy/tracy": "^2.7",
+		"nette/forms": "^3.0"
+	}
+}

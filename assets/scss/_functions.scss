@@ -1,0 +1,37 @@
+
+// Mixin 
+@mixin media-breakpoint($name) {
+	@if $name == "md" {
+		@media screen and (min-width: 786px) {
+			@content;
+		}
+	} @else if $name == "sm" {
+		@media screen and (min-width: 576px) {
+			@content;
+		}
+	} @else if $name == "lg" {
+		@media screen and (min-width: 992px) {
+			@content;
+		}
+	} @else if $name == "xl" {
+		@media screen and (min-width: 1200px) {
+			@content;
+		}
+	} @else {
+		@content;
+	}
+}
+
+// Function
+@function color-yiq($color, $dark: #213040, $light:  #f1f2f6) {
+	$red: red($color);
+	$blue: blue($color);
+	$green: green($color);
+
+	$yiq: (($red * 299) + ($green * 587) + ($blue * 114)) / 1000;
+	@if ($yiq >= 150){
+		@return $dark;
+	} @else {
+		@return $light;
+	}
+}

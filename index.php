@@ -4,6 +4,7 @@ session_start();
 
 require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/tools.php';
+require __DIR__ . '/core/database.php';
 
 use Tracy\Debugger;
 
@@ -53,5 +54,25 @@ $router->mount('/tools', function () use ($router, $template) {
 		echo "Ngapain ? ... h3h3";
 	});
 });
+$router->match('POST', '/', function () {
+	if (isset($_POST['like'])) {
+		$like = (int) $_POST['like'];
+		$like++;
+		$file = fopen('views/likes.txt', 'w');
+		if (!$file) {
+			echo "Tolong Refresh page anda !";
+			die();
+		} else {
+			fwrite($file, $like);
+			fclose($file);
+			$data = [
+				"like" => $like
+			];
+			echo json_encode($data, JSON_PRETTY_PRINT);
+		}
+	}
+});
 
 $router->run();
+$db = new Database();
+

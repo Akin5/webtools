@@ -12,32 +12,48 @@ $(window).on('load', function () {
 	setTimeout(() => {
 		$('body').addClass('loaded');
 	}, 1500);
-	$(document).ready(function () {
-		$('#darkmode').on('change', function () {
-			this.checked
-				? (window.localStorage.setItem('dm', true),
-				  comp.addClass('dark'),
-				  $('[name="theme-color"]').attr('content', '#213040'))
-				: (window.localStorage.removeItem('dm'),
-				  comp.removeClass('dark'),
-				  $('[name="theme-color"]').attr('content', '#4e73df'));
-		});
-		$('#sidebarToggle, #sidebarToggleTop').on('click', function () {
-			$('body').toggleClass('sidebar-to');
-			$('.sidebar').toggleClass('toggled');
-			if ($('.sidebar').hasClass('toggled')) {
-				$('.sidebar .collapse').collapse('hide');
-			}
-			$(this).toggleClass('active');
-		});
-		$('#likebtn').on('click', function () {
+	$('#darkmode').on('change', function () {
+		this.checked
+			? (window.localStorage.setItem('dm', true),
+			  comp.addClass('dark'),
+			  $('[name="theme-color"]').attr('content', '#213040'))
+			: (window.localStorage.removeItem('dm'),
+			  comp.removeClass('dark'),
+			  $('[name="theme-color"]').attr('content', '#4e73df'));
+	});
+	$('#sidebarToggle, #sidebarToggleTop').on('click', function () {
+		$('body').toggleClass('sidebar-to');
+		$('.sidebar').toggleClass('toggled');
+		if ($('.sidebar').hasClass('toggled')) {
+			$('.sidebar .collapse').collapse('hide');
+		}
+		$(this).toggleClass('active');
+	});
+	$('#likebtn').on('click', function () {
+		let like = $('#like').val();
+		// $.ajax({
+		//   url: '/like',
+		//   type: 'POST',
+		//   data: `like=${like}`,
+		//   success: function (data) {
+		//     alert(data);
+		//   },
+		// });
+		setTimeout(() => {
 			swal(
 				'Terimakasih atas penilaian nya',
 				'Success Like',
 				localStorage.getItem('dm') ? 'dark' : 'light',
 			);
-		});
+		}, 100);
 	});
+	const wavesConfig = {
+		duration: 1000,
+		delay: 500,
+	};
+	Waves.init(wavesConfig);
+	Waves.attach('.btn', 'waves-light');
+	Waves.attach('.btn-circle', ['waves-light', 'waves-circle']);
 });
 function swal(pesan, judul, mode = 'light', tipe = 'success') {
 	mode == 'dark' ? (pesan = `<span class="text-white">${pesan}</span>`) : '';

@@ -139,6 +139,8 @@
 	width: 100%;
 	justify-content: space-around;
 	align-items: center;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
 	padding: 0;
 }
 .home-list-item {

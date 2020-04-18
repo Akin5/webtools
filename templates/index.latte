@@ -29,7 +29,7 @@
 							<div class="h5 mb-0 font-weight-bold" id="shared">10</div>
 						</div>
 						<div class="col-auto">
-							<i class="far fa-share-square fa-2x"></i>
+							<i class="fal fa-share-square fa-2x"></i>
 						</div>
 					</div>
 				</div>
@@ -41,10 +41,10 @@
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Like</div>
-							<div class="h5 mb-0 font-weight-bold" id="like">10</div>
+							<div class="h5 mb-0 font-weight-bold" id="like">0</div>
 						</div>
 						<div class="col-auto">
-							<i class="far fa-thumbs-up fa-2x"></i>
+							<i class="fal fa-thumbs-up fa-2x"></i>
 						</div>
 					</div>
 				</div>
@@ -59,7 +59,7 @@
 							<div class="h5 mb-0 font-weight-bold" id="dislike">3</div>
 						</div>
 						<div class="col-auto">
-							<i class="far fa-thumbs-down fa-2x"></i>
+							<i class="fal fa-thumbs-down fa-2x"></i>
 						</div>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 		<div class="col-md-12 mx-auto">
 			<div class="home mb-4">
 				<div class="home-header">
-					<h1 class="mb-4 home-heading text-center">Welcome To Web Tools BCC</h1>
+					<h1 class="mb-4 home-heading text-center">Welcome To Bcc Web Tools</h1>
 				</div>
 				<div class="home-content">
 					<div class="home-brand">
@@ -84,32 +84,38 @@
 						<ul class="home-list" id="socialmedia">
 							<li class="home-list-item">
 								<a class="home-list-item-link" href="https://instagram.com/blackcodercrush" target="_blank">
-									<ion-icon name="logo-instagram" class="fa-1x"></ion-icon>
+									<i class="fab fa-fw fa-instagram"></i>
 									<span>Instagram</span>
 								</a>
 							</li>
 							<li class="home-list-item">
 								<a class="home-list-item-link" href="https://facebook.com/blackcodercrush" target="_blank">
-									<ion-icon name="logo-facebook" class="fa-1x"></ion-icon>
+									<i class="fab fa-fw fa-facebook"></i>
 									<span>Facebook</span>
 								</a>
 							</li>
 							<li class="home-list-item">
 								<a class="home-list-item-link" href="https://www.youtube.com/channel/UCk-KwD5UouOkjhAvr2E-dPQ" target="_blank">
-									<ion-icon name="logo-youtube" class="fa-1x"></ion-icon>
+									<i class="fab fa-fw fa-youtube"></i>
 									<span>Youtube</span>
 								</a>
 							</li>
 							<li class="home-list-item">
 								<a class="home-list-item-link" href="https://myblackcodercrush.blogspot.com/" target="_blank">
-									<i class="fab fa-blogger"></i>
+									<i class="fab fa-fw fa-blogger"></i>
 									<span>Blogspot</span>
 								</a>
 							</li>
 							<li class="home-list-item">
 								<a class="home-list-item-link" href="https://github.com/blackcodercrush" target="_blank">
-									<ion-icon name="logo-github" class="fa-1x"></ion-icon>
+									<i class="fab fa-fw fa-github"></i>
 									<span>Github</span>
+								</a>
+							</li>
+							<li class="home-list-item">
+								<a class="home-list-item-link" href="https://t.me/blackcodercrush" target="_blank">
+									<i class="fab fa-fw fa-telegram"></i>
+									<span>Telegram</span>
 								</a>
 							</li>
 						</ul>
@@ -148,7 +154,7 @@
 			</div>
 			<div class="home mb-4">
 				<div class="home-header">
-					<h6 class="home-heading ml-3"><i class="fa fa-info-circle text-info"></i> About</h6>
+					<h6 class="home-heading ml-3"><i class="fal fa-info-circle text-info"></i> About</h6>
 				</div>
 				<div class="home-content">
 					<div class="home-brand"><img class="img-fluid px-4 px-sm-3 mt-3 mb-4" src="{$tools ? '../'}assets/img/onlenpage.png" alt="Brand"></div>
@@ -172,7 +178,7 @@
 			<div class="home mb-4">
 				<div class="home-header">
 					<h6 class="home-heading ml-3">
-						<i class="far fa-heart text-danger mr-2"></i>
+						<i class="fal fa-heart text-danger mr-2"></i>
 						Beri Kami Nilai
 					</h6>
 				</div>
@@ -183,24 +189,24 @@
 							<div class="col-xs-3 col-md-6 mx-auto">
 								<div class="col-auto">
 									<h1 class="h4">Suka dengan website kami ?</h1>
-									<button id="likebtn" class="btn btn-primary"><i class="far fa-thumbs-up mr-2"></i>Like</button>
-									<button id="dislikebtn" class="btn btn-danger"><i class="far fa-thumbs-down mr-2"></i>Dislike</button>
+									<button type="button" name="likebtn" id="likebtn" class="btn btn-primary"><i class="fal fa-thumbs-up mr-2"></i>Like</button>
+									<button type="button" name="dislikebtn" id="dislikebtn" class="btn btn-danger"><i class="fal fa-thumbs-down mr-2"></i>Dislike</button>
 								</div>
-								<div class="col-auto mt-3">
-									<h1 class="h4">Share ke teman - teman kalian</h1>
-									<a class="btn btn-facebook btn-circle" href="">
-										<i class="fab fa-facebook"></i>
-									</a>
-									<a class="btn btn-whatsapp btn-circle" href="whatsapp://send?text=Hai+cobain+yuk+WebTools+Ini+yang+dibuat+oleh+team+BlackCoderCrush%0AWebsite+ini+sangat+membantu+ku+ayo+buruan+coba+link+ada+dibawah+ini+%0Ahttps://bccwebtools.herokuapp.com">
-										<i class="fab fa-whatsapp"></i>
-									</a>
-									<a class="btn btn-instagram btn-circle" href="">
-										<i class="fab fa-instagram"></i>
-									</a>
-									<a class="btn btn-twitter btn-circle" href="">
-										<i class="fab fa-twitter"></i>
-									</a>
-								</div>
+								<!-- <div class="col-auto mt-3"> -->
+								<!--   <h1 class="h4">Share ke teman - teman kalian</h1> -->
+								<!--   <a class="btn btn-facebook btn-circle" href=""> -->
+								<!--     <i class="fab fa-facebook-f"></i> -->
+								<!--   </a> -->
+								<!--   <a class="btn btn-whatsapp btn-circle" href="whatsapp://send?text=Hai+cobain+yuk+WebTools+Ini+yang+dibuat+oleh+team+BlackCoderCrush%0AWebsite+ini+sangat+membantu+ku+ayo+buruan+coba+link+ada+dibawah+ini+%0Ahttps://bccwebtools.herokuapp.com"> -->
+								<!--     <i class="fab fa-whatsapp"></i> -->
+								<!--   </a> -->
+								<!--   <a class="btn btn-instagram btn-circle" href=""> -->
+								<!--     <i class="fab fa-instagram"></i> -->
+								<!--   </a> -->
+								<!--   <a class="btn btn-twitter btn-circle" href=""> -->
+								<!--     <i class="fab fa-twitter"></i> -->
+								<!--   </a> -->
+								<!-- </div> -->
 							</div>
 						</div>
 					</div>

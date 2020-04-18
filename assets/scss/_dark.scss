@@ -9,10 +9,10 @@
 
 	&.dark {
 		#content-wrapper {
-			background-color: #15202b;
+			background-color: $dark-background-color;
 		}
 		.home {
-			background: #213040;
+			background: $dark-color;
 			box-shadow:  -6px -6px 12px #192430, 6px 6px 12px #293c50;
 			border-color: #272b30;
 			color: #f1f1f1;
@@ -43,8 +43,8 @@
 		}
 		.card {
 			border-color: #213030;
-			background: #213040;
-			box-shadow:  -6px -6px 12px #111922, 6px 6px 12px #31475e;
+			background: $dark-color;
+			box-shadow: 0 0.15rem 1.85rem 0 rgba($color: #f0f0f0, $alpha: 0.10);
 			color: #f1f1f1;
 		}
 		.card-header {
@@ -58,14 +58,7 @@
 			border-bottom-color: #60a3bc;
 		}
 		label {
-			color: rgba(245, 245, 245, 0.8);
-		}
-		@each $col, $val in Sdark_theme_color {
-			@each $pos in ["top", "left", "bottom", "right"] {
-				.border-#{$pos}-#{$col} {
-					border-#{$pos}: 0.25rem solid #{$val} !important;
-				}
-			}
+			color: rgba($color: #f5f5f5, $alpha: 0.8);
 		}
 	}
 }

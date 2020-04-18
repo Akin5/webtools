@@ -1,12 +1,11 @@
 .btn-light {
 	color: var(--dark);
 	background-color: var(--light);
-}
-.btn-light:focus,
-.btn-light:active {
-	box-shadow: 0 0 0 0.25rem rgba(245, 246, 250, 0.25);
-	background-color: var(--light);
-	color: var(--dark);
+	&:focus, &:active {
+		box-shadow: 0 0 0 0.25rem rgba(245, 246, 250, 0.25);
+		background-color: var(--light);
+		color: var(--dark);
+	}
 }
 .btn-download {
 	display: flex;
@@ -33,49 +32,50 @@
 	padding: 5px;
 	outline: none;
 	-webkit-tap-highlight-color: transparent;
-}
-.btn-toggle:active,
-.btn-toggle:focus {
-	background: transparent !important;
-	outline: 0;
-	border: 1px solid transparent;
-	color: #fff;
-}
-.btn-bar {
-	position: relative;
-	height: 2px;
-	display: block;
-	border-radius: 1px;
-	background: #ccc;
-}
-.btn-bar:nth-of-type(1) {
-	margin-top: 7px;
-	top: -10px;
-	width: 100%;
-	animation: topbar-b 0.5s linear forwards;
-}
-.btn-bar:nth-of-type(2) {
-	opacity: 1;
-	width: 70%;
-	left: 10px;
-}
-.btn-bar:nth-of-type(2):not(.active) {
-	animation: leftbar-b 0.5s linear forwards;
-}
-.btn-bar:nth-of-type(3) {
-	bottom: 0;
-	margin-top: 10px;
-	width: 100%;
-	animation: bottombar-b 0.5s linear forwards;
-}
-.btn-toggle.active .btn-bar:nth-of-type(1) {
-	animation: topbar-x 0.5s linear forwards;
-}
-.btn-toggle.active .btn-bar:nth-of-type(2) {
-	opacity: 0;
-}
-.btn-toggle.active .btn-bar:nth-of-type(3) {
-	animation: bottombar-x 0.5s linear forwards;
+	&:active, &:focus {
+		background: transparent !important;
+		outline: 0;
+		border: 1px solid transparent;
+		color: #fff;
+	}
+	.btn-bar {
+		position: relative;
+		height: 2px;
+		display: block;
+		border-radius: 1px;
+		background: #ccc;
+		&:nth-of-type(1){
+			margin-top: 7px;
+			top: -10px;
+			width: 100%;
+			animation: topbar-b 0.5s linear forwards;
+		}
+		&:nth-of-type(2) {
+			opacity: 1;
+			width: 70%;
+			left: 10px;
+			&:not(.active) {
+				animation: leftbar-b 0.5s linear forwards;
+			}
+		}
+		&:nth-of-type(3) {
+			bottom: 0;
+			margin-top: 10px;
+			width: 100%;
+			animation: bottombar-b 0.5s linear forwards;
+		}
+	}
+	&.active {
+		.btn-bar:nth-of-type(1) {
+			animation: topbar-x 0.5s linear forwards;
+		}
+		.btn-bar:nth-of-type(2) {
+			opacity: 0;
+		}
+		.btn-bar:nth-of-type(3) {
+			animation: bottombar-x 0.5s linear forwards;
+		}
+	}
 }
 .darkmode {
 	position: relative;
@@ -84,47 +84,48 @@
 	align-items: center;
 	padding: 5px;
 	margin: 0 5px;
+	.dm-control {
+		position: absolute;
+		top: 0;
+		left: 0;
+		appearance: none;
+		opacity: 0;
+		z-index: -1;
+		&:checked + .dm-label .dm-label-icon:nth-of-type(1) {
+			animation: sunAnim2 0.2s ease forwards;
+		}
+		&:checked + .dm-label .dm-label-icon:nth-of-type(2) {
+			animation: moonAnim1 0.2s ease forwards;
+		}
+	}
+	.dm-label {
+		position: relative;
+		vertical-align: middle;
+		margin-bottom: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		.dm-label-icon {
+			font-size: 1.5rem;
+			color: #fff;
+			padding: 5px;
+			margin: auto;
+			border-radius: 50%;
+			position: absolute;
+			color: #fff;
+			&:nth-of-type(1) {
+				animation: sunAnim1 0.2s ease forwards;
+			}
+			&:nth-of-type(2) {
+				animation: moonAnim2 0.2s ease forwards;
+			}
+		}
+	}
 }
-.darkmode .dm-control {
-	position: absolute;
-	top: 0;
-	left: 0;
-	appearance: none;
-	opacity: 0;
-	z-index: -1;
-}
-.darkmode .dm-label {
-	position: relative;
-	vertical-align: middle;
-	margin-bottom: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-}
-.darkmode .dm-label-icon {
-	font-size: 1.5rem;
-	color: #fff;
-	padding: 5px;
-	margin: auto;
-	border-radius: 50%;
-	position: absolute;
-	color: #fff;
-}
-.darkmode .dm-label-icon:nth-of-type(1) {
-	animation: sunAnim1 0.2s ease forwards;
-}
-.darkmode .dm-label-icon:nth-of-type(2) {
-	animation: moonAnim2 0.2s ease forwards;
-}
-.darkmode .dm-control:checked + .dm-label .dm-label-icon:nth-of-type(1) {
-	animation: sunAnim2 0.2s ease forwards;
-}
-.darkmode .dm-control:checked + .dm-label .dm-label-icon:nth-of-type(2) {
-	animation: moonAnim1 0.2s ease forwards;
-}
-@each $color, $value in $brand_colors {
-	.btn-#{$color} {
+
+@each $name, $value in $brand_colors {
+	.btn-#{$name} {
 		@include button-variant($value, $value);
 	}
 }
@@ -132,4 +133,10 @@
 	.btn-outline-#{$color} {
 		@include button-outline-variant($value);
 	}
+}
+.btn {
+	background-image: linear-gradient(40deg, rgba($color: #fff, $alpha: 0.25) 16%, rgba($color: #fff, $alpha: 0.25) 17%, rgba($color: #fff, $alpha: 0.09) 17%, rgba($color: #fff, $alpha: 0.09) 23%, transparent 10%, transparent 80%, rgba($color: #fff, $alpha: 0.09) 78%, rgba($color: #fff, $alpha: 0.09) 84%, rgba($color: #fff, $alpha: 0.25) 84%, rgba($color: #fff, $alpha: 0.25));
+}
+.btn-circle {
+	background-image: linear-gradient(40deg, rgba($color: #fff, $alpha: 0.3) 20%, rgba($color: #fff, $alpha: 0.3) 21%, rgba($color: #fff, $alpha: 0.1) 21%, rgba($color: #fff, $alpha: 0.1) 27%, transparent 10%, transparent 70%, rgba($color: #fff, $alpha: 0.1) 68%, rgba($color: #fff, $alpha: 0.1) 78%, rgba($color: #fff, $alpha: 0.3) 78%, rgba($color: #fff, $alpha: 0.3));
 }

@@ -82,3 +82,19 @@
 	background-color: #213040 !important;
 	box-shadow: 0 0 10px rgba(245, 245, 245, 0.5) !important;
 }
+.waves-effect.waves-light .waves-ripple {
+	background: rgba($color: #fff, $alpha: 0.4);
+	background: -webkit-radial-gradient(rgba($color: #fff, $alpha: 0.4) 0, rgba($color: #fff, $alpha: 0.5) 40%, rgba($color: #fff, $alpha: 0.4) 50%, rgba($color: #fff, $alpha: 0.5) 60%, rgba($color: #fff, $alpha: 0) 70%);
+	background: -o-radial-gradient(rgba($color: #fff, $alpha: 0.4) 0, rgba($color: #fff, $alpha: 0.5) 40%, rgba($color: #fff, $alpha: 0.4) 50%, rgba($color: #fff, $alpha: 0.5) 60%, rgba($color: #fff, $alpha: 0) 70%);
+	background: -moz-radial-gradient(rgba($color: #fff, $alpha: 0.4) 0, rgba($color: #fff, $alpha: 0.5) 40%, rgba($color: #fff, $alpha: 0.4) 50%, rgba($color: #fff, $alpha: 0.5) 60%, rgba($color: #fff, $alpha: 0) 70%);
+	background: radial-gradient(rgba($color: #fff, $alpha: 0.4) 0, rgba($color: #fff, $alpha: 0.5) 40%, rgba($color: #fff, $alpha: 0.4) 50%, rgba($color: #fff, $alpha: 0.5) 60%, rgba($color: #fff, $alpha: 0) 70%);
+}
+#wrapper.dark {
+	@each $col, $val in $dark-theme-colors {
+		@each $pos in "top", "left", "bottom", "right" {
+			.border-#{$pos}-#{$col} {
+				border-#{$pos}: 0.25rem solid #{$val} !important;
+			}
+		}
+	}
+}

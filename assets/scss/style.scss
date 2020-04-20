@@ -6,11 +6,10 @@
 */
 
 
+@import 'variable';
 @import '../plugins/bootstrap/scss/functions';
 @import '../plugins/bootstrap/scss/variables';
 @import '../plugins/bootstrap/scss/mixins';
-
-@import 'variable';
 @import 'root';
 @import 'dark';
 @import 'loading';
@@ -20,3 +19,6 @@
 @import 'button';
 @import 'animation';
 @import 'utils';
+
+
+$hainam: "akin";

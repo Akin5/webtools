@@ -13,7 +13,6 @@
 		"latte/latte": "^2.7",
 		"bramus/router": "^1.4",
 		"tracy/tracy": "^2.7",
-		"nette/forms": "^3.0"
 	},
 	"autoload": {
 		"psr-4": {

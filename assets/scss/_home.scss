@@ -139,8 +139,6 @@
 	width: 100%;
 	justify-content: space-around;
 	align-items: center;
-	overflow-x: auto;
-	-webkit-overflow-scrolling: touch;
 	padding: 0;
 }
 .home-list-item {
@@ -151,7 +149,7 @@
 	align-items: center;
 }
 .home-list-item-link {
-	color: #424242;
+	color: rgba($color: #424242, $alpha: 0.5);
 	font-weight: bold;
 	font-size: 1.5rem;
 	transition: color 0.2s ease, transform 0.2s ease-in-out;
@@ -166,10 +164,13 @@
 
 	transition: all 0.5s ease;
 
-	&:hover, &:focus {
-		color: #3498db;
+	&:hover, &:active {
+		color: #424242;
 		transform: scale(1.2);
 		text-decoration: none;
+		span {
+			color: #2d3436;
+		}
 	}
 	ion-icon[src] {
 		font-size: 1.8rem;
@@ -177,9 +178,10 @@
 	span {
 		position: relative;
 		font-size: 0.8rem;
-		color: #2d3436;
+		color: rgba($color: #2d3436, $alpha: 0.5);
 		padding: 0 3px 3px;
 		display: none;
+		transition: 0.5s ease;
 	}
 	@include media-breakpoint-up(md) {
 		font-size: 2rem;

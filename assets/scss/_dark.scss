@@ -1,7 +1,7 @@
 #wrapper {
 	#content-wrapper {
 		transition: all 0.1s ease-in-out;
-		background-color: #fff;
+		background-color: $text-color-dark;
 	}
 	.card {
 		box-shadow: 0 0.15rem 1.74rem rgba(0, 0, 0, 0.15);
@@ -11,54 +11,142 @@
 		#content-wrapper {
 			background-color: $dark-background-color;
 		}
+		.container-fluid > * {
+			color: darken($text-color-dark, 5%);
+		}
 		.home {
 			background: $dark-color;
 			box-shadow:  -6px -6px 12px #192430, 6px 6px 12px #293c50;
 			border-color: #272b30;
-			color: #f1f1f1;
+			color: $text-color-dark;
 		}
 		.home-header {
 			background-color: #2c3e50;
-			color: #f1f1f1;
+			color: $text-color-dark;
 			border-bottom-color: #2d3436;
 		}
 		.home-content-title, .home-content-slogan {
-			color: #f1f1f1;
+			color: $text-color-dark;
+		}
+		.home-list-item-link {
+			color: rgba($color: #999, $alpha: 0.4);
+			&:hover {
+				color: $text-color-dark;
+				span {
+					color: $text-color-dark;
+				}
+			}
+			span {
+				color: rgba($color: #fff, $alpha: 0.4);
+			}
 		}
 		hr.home-divider {
 			border-color: #2c3e50;
 		}
 		.home-body-link {
-			color: #f1f1f1;
-		}
-		.home-list-item-link {
-			color: #f1f2f6;
-
-			&:hover, &:focus {
-				color: #60a3bc;
-			}
-			span {
-				color: #f1f1f1;
-			}
+			color: $text-color-dark;
 		}
 		.card {
-			border-color: #213030;
+			border-color: $dark-color;
 			background: $dark-color;
-			box-shadow: 0 0.15rem 1.85rem 0 rgba($color: #f0f0f0, $alpha: 0.10);
-			color: #f1f1f1;
+			box-shadow: 0 0.15rem 1.85rem 0 rgba($color: $text-color-dark, $alpha: 0.10);
+			color: $text-color-dark;
 		}
 		.card-header {
-			background-color: #05202b;
-			border-bottom-color: #05202b;
-			color: #f3f3f3;
+			background-color: #2c3e50;
+			border-bottom-color: #2d3436;
+			color: $text-color-dark;
 		}
 		.list-group-flush .list-group-item {
 			background: transparent;
-			color: #f1f2f6;
-			border-bottom-color: #60a3bc;
+			color: $text-color-dark;
+			border-bottom-color: lighten(#2c3e50, 15%);
 		}
 		label {
-			color: rgba($color: #f5f5f5, $alpha: 0.8);
+			color: rgba($color: $text-color-dark, $alpha: 0.8);
+		}
+		.table {
+			color: darken($color: $text-color-dark, $amount: 3%);
+			thead {
+				th {
+					border-bottom-color: lighten(#2e3e50, 10%);
+				}
+			}
+			th, td {
+				border-top-color: lighten(#2e3e50, 10%);
+			}
+		}
+		table.dataTable {
+			margin-top: 30px !important;
+
+		}
+		.dataTables_wrapper {
+			padding-top: 10px !important;
+			.dataTable_info {
+				color: $text-color-dark;
+			}
+			.dataTables_paginate {
+				border: 1px solid red;
+				margin-right: 1em;
+				.pagination {
+					border: 1px solid red;
+					.page-link {
+					border: 1px solid red;
+					overflow: auto;
+					overflow-x: scroll;
+					max-width: 100%;
+					}
+				}
+				.page-item {
+					&.active .page-link {
+						background-color: $dark-primary;
+						border-color: $dark-primary;
+					}
+					.page-link {
+						background-color: $dark-color;
+						border-color: lighten($dark-color, 15%);
+						color: $text-color-dark;
+						&:hover {
+							background-color: rgba($color: lighten($dark-color, 15%), $alpha: 0.4);
+							border-color: lighten($dark-color, 10%);
+						}
+						&:focus {
+							box-shadow: 0 0 0 0.2rem rgba($color: $dark-primary, $alpha: 0.25);
+						}
+					}
+					&.disabled .page-link {
+						background-color: $dark-color;
+						border-color: lighten($dark-color, 15%);
+						color: lighten(#858796, 10%);
+					}
+				}
+			}
+			.dataTables_length {
+				label {
+					margin-left: 1em;
+				}
+				select {
+					color: #f1f2f6;
+					border-color: #6b6d7d;
+					background: #213040 $custom-select-background  no-repeat right 0.75rem center/8px 10px;
+					&:focus {
+						border-color: #4e73df;
+						box-shadow: 0 0 0 0.25rem rgba(46, 89, 217, 0.25);
+					}
+				}
+			}
+			.dataTables_filter {
+				input {
+					margin-right: 1em;
+					background: #213040;
+					color: #f1f2f6;
+					border-color: #6b6d7d;
+					&:focus {
+						border-color: #4e73df;
+						box-shadow: 0 0 0 0.25rem rgba(46, 89, 217, 0.25);
+					}
+				}
+			}
 		}
 	}
 }

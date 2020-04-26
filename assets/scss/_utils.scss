@@ -80,7 +80,7 @@
 }
 .swa-dark {
 	background-color: #213040 !important;
-	box-shadow: 0 0 10px rgba(245, 245, 245, 0.5) !important;
+	box-shadow: 0 0 0.5rem 0 rgba($color: #999, $alpha: 0.5) !important;
 }
 .waves-effect.waves-light .waves-ripple {
 	background: rgba($color: #fff, $alpha: 0.4);
@@ -96,5 +96,8 @@
 				border-#{$pos}: 0.25rem solid #{$val} !important;
 			}
 		}
+	}
+	@each $color, $value in $dark-theme-colors {
+		@include text-emphasis-variant(".text-#{$color}", $value, true);
 	}
 }

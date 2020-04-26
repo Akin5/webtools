@@ -49,8 +49,11 @@
 		.nav-item {
 			.collapse, .collapsing {
 				.collapse-inner {
-					background: linear-gradient(150deg, $dark-color, #05202b);
-					box-shadow:  -4px -4px 6px #052734, 4px 4px 6px #062f40;
+					background: linear-gradient(150deg, $dark-color 10%, #05202b);
+					// background-color: #213040;
+					// box-shadow:  -4px -4px 6px #052734, 4px 4px 6px #062f40;
+					box-shadow: 0 0.15rem 1.75rem 0 rgba($color: #062f40, $alpha: 0.15);
+					border-color: #213040;
 					.collapse-item {
 						background-color: transparent;
 						color: rgba($color: #fff, $alpha: 0.5);

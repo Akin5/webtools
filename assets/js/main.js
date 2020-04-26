@@ -20,11 +20,7 @@ $(window).on('load', function () {
 	setTimeout(() => {
 		$('body').addClass('loaded');
 	}, 1500);
-	setTimeout(() => {
-		counter(`${base_url}/views/visitor.txt`, '#visitor');
-		counter(`${base_url}/views/likes.txt`, '#like');
-		counter(`${base_url}/views/dislikes.txt`, '#dislike');
-	}, 2000);
+	// Dark Mode
 	$('#darkmode').on('change', function () {
 		this.checked
 			? (window.localStorage.setItem('dm', true),
@@ -35,6 +31,8 @@ $(window).on('load', function () {
 			  comp.removeClass('dark'),
 			  $('[name="theme-color"]').attr('content', lightcolor));
 	});
+
+	// Sidebar
 	$('#sidebarToggle, #sidebarToggleTop').on('click', function () {
 		$('body').toggleClass('sidebar-to');
 		$('.sidebar').toggleClass('toggled');
@@ -43,55 +41,20 @@ $(window).on('load', function () {
 		}
 		$(this).toggleClass('active');
 	});
-	// let like = $('#like');
-	// console.log(_like_);
-	// $.ajax({
-	//   url: `${base_url}/like`,
-	//   type: 'POST',
-	//   data: `like=${like.val()}`,
-	//   success: function (data) {
-	//     if (like.text() == _like_) {
-	//       swal('Terimakasih atas penilaian nya', 'Success UnLike');
-	//     } else {
-	//       swal('Terimakasih atas penilaian nya', 'Success Like');
-	//     }
-	//     like.text(data);
-	//   },
-	// });
-	$('#likebtn').on('click', function () {
-		if (!$('#boxbtn').hasClass('active')) {
-			$('#boxbtn').toggleClass('active');
-			$(this).toggleClass('btn-secondary btn-primary').attr('id', 'unlikebtn');
-		} else {
-			$(this).toggleClass('btn-secondary btn-primary').attr('id', 'unlikebtn');
-			$('#undislikebtn').removeClass('btn-danger').addClass('btn-secondary');
-		}
+
+	$('#scjso').on('keyup', function () {
+		convertjso();
 	});
-	$('#unlikebtn').on('click', function () {
-		$('#boxbtn').hasClass('active')
-			? $('#boxbtn').toggleClass('active')
-			: $('#boxbtn').toggleClass('active');
-		$(this).toggleClass('btn-primary btn-secondary').attr('id', 'likebtn');
+	$('#resultjso, #tagjso').on('click', function () {
+		$(this).select();
 	});
-	$('#dislikebtn').on('click', function () {
-		if (!$('#boxbtn').hasClass('active')) {
-			$('#boxbtn').toggleClass('active');
-			$(this)
-				.toggleClass('btn-secondary btn-danger')
-				.attr('id', 'undislikebtn');
-		} else {
-			$(this)
-				.toggleClass('btn-secondary btn-danger')
-				.attr('id', 'undislikebtn');
-			$('#unlikebtn').removeClass('btn-primary').addClass('btn-secondary');
-		}
+	$('#copyjso').click(function () {
+		$('#tagjso').select();
+		document.execCommand('copy');
+		$(this).tooltip('toggle');
 	});
-	$('#undislikebtn').on('click', function () {
-		$('#boxbtn').hasClass('active')
-			? $('#boxbtn').toggleClass('active')
-			: $('#boxbtn').toggleClass('active');
-		$(this).toggleClass('btn-danger btn-secondary').attr('id', 'dislikebtn');
-	});
+
+	// Waves
 	const wavesConfig = {
 		duration: 1000,
 		delay: 500,
@@ -99,46 +62,102 @@ $(window).on('load', function () {
 	Waves.init(wavesConfig);
 	Waves.attach('.btn', 'waves-light');
 	Waves.attach('.btn-circle', ['waves-light', 'waves-circle']);
+
+	// Data Tables
+	$('#adtable').DataTable({
+		pagingType: 'full_numbers',
+		lengthMenu: [
+			[10, 25, 50, -1],
+			[10, 25, 50, 'All'],
+		],
+		responsive: true,
+		language: {
+			search: '_INPUT_',
+			searchPlaceholder: 'Cari URL !',
+		},
+		paging: false,
+		scrollY: '500px',
+		scrollCollapse: true,
+	});
+
+	// Jquery Validation
+	$.validator.setDefaults({
+		errorElement: 'div',
+		errorPlacement: function (err, el) {
+			err.addClass('invalid-feedback');
+			err.insertAfter(el);
+		},
+		highlight: function (el) {
+			$(el).addClass('is-invalid').removeClass('is-valid');
+		},
+		unhighlight: function (el) {
+			$(el).removeClass('is-invalid').addClass('is-valid');
+		},
+	});
+	$('#adform').validate({
+		messages: {
+			urlad: {
+				url: 'Masukan URL dengan benar !',
+				required: 'Field ini harus diisi !',
+			},
+		},
+		rules: {
+			urlad: {
+				url: true,
+				required: true,
+			},
+		},
+	});
+	$('#jsoform').validate({
+		messages: {
+			scjso: {
+				required: 'Field ini harus diisi !',
+			},
+		},
+		rules: {
+			scjso: {
+				required: true,
+			},
+		},
+		ignore: '#resultjso',
+		submitHandler: function (form) {
+			convertjso();
+			form.submit();
+		},
+	});
 });
-function swal(pesan, judul, tipe = 'success') {
+function toast(judul, tipe = 'success') {
 	let mode;
 	window.localStorage.getItem('dm') ? (mode = 'dark') : (mode = 'light');
-	mode == 'dark' ? (pesan = `<span class="text-white">${pesan}</span>`) : '';
 	const btn = Swal.mixin({
+		toast: true,
+		position: 'top-start',
 		customClass: {
-			confirmButton: 'btn btn-success',
-			cancelButton: 'btn btn-danger',
 			title: 'text-primary',
 			popup: mode == 'dark' ? 'swa-dark' : '',
 		},
-		buttonsStyling: false,
-		reverseButtons: true,
+		timer: 1500,
+		timerProgressBar: false,
+		onOpen: (toast) => {
+			toast.addEventListener('mouseenter', Swal.stopTimer);
+			toast.addEventListener('mouseleave', Swal.resumeTimer);
+		},
 		showCancelButton: false,
-		confirmButtonText: 'Ok, sama sama',
+		showConfirmButton: false,
 		backdrop: true,
 	});
 	btn.fire({
 		icon: tipe,
 		title: judul,
-		html: pesan,
 	});
 }
-function counter(file, el, speed = 60) {
-	$.get(file, (data) => {
-		if (data > 30) speed = 60;
-		else if (data > 10) speed = 100;
-		else if (data < 5) speed = 1000;
-
-		let element = $(el);
-		let end, c, count;
-		end = data;
-
-		count = setInterval(() => {
-			c = parseInt(element.text());
-			element.text((++c).toString());
-			if (c == end) {
-				clearInterval(count);
-			}
-		}, speed);
-	});
+function convertjso() {
+	let scjso = $('#scjso').val();
+	let resultjso = 'document.documentElement.innerHTML = String.fromCharCode(';
+	for (let n = 0; n < scjso.length; n++) {
+		if (n != 0) resultjso += ', ';
+		resultjso += scjso.charCodeAt(n);
+	}
+	resultjso += ');';
+	$('#resultjso').text(resultjso);
 }

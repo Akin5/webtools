@@ -402,12 +402,14 @@ ion-icon {
   color: #f1f1f1;
   border: 1px solid #213040;
 }
-.navbar.dark .drropdown-header {
+.navbar.dark .dropdown-header {
   color: #fff;
 }
 .navbar.dark .dropdown-item {
   color: #f1f1f1;
-  border-color: #213040;
+  border-left: 1px solid #3b5672;
+  border-right: 1px solid #3b5672;
+  border-bottom: 1px solid #3b5672;
 }
 .navbar.dark .dropdown-item ion-icon {
   color: #f1f1f1;

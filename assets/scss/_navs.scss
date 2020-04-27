@@ -207,12 +207,15 @@
 			color: #f1f1f1;
 			border: 1px solid $dark-color;
 		}
-		.drropdown-header {
+		.dropdown-header {
 			color: #fff;
 		}
 
 		.dropdown-item {
 			color: #f1f1f1;
+			border-left: 1px solid lighten($dark-color, 15%);
+      border-right: 1px solid lighten($dark-color, 15%);
+      border-bottom: 1px solid lighten($dark-color, 15%);
 			ion-icon {
 				color: #f1f1f1;
 				margin-top: 2px;
@@ -222,7 +225,6 @@
 				border-color: #f1f1f1;
 				background-color: #f1f1f1;
 			}
-			border-color: $dark-color;
 		}
 	}
 }

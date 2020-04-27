@@ -12,17 +12,15 @@ class Adfin extends Controller
 	}
 	public function store()
 	{
-		$data = ["error" => ""];
+		$data = ["error" => "", "show" => "", "pound" => "", "notpound" => ""];
 		if (isset($_POST['btnad'])) {
 			$pound = [];
 			$notpund = [];
-			$wd = file("App/data/txt/adminfind.txt");
+			$wd = file("app/data/txt/adminfind.txt");
 			if (isset($_POST['urlad'])) {
 				$url = strtok($_POST['urlad'], '?');
 				if (filter_var($url, FILTER_VALIDATE_URL)) {
-					$data += [
-						"show" => true
-					];
+					$data['show'] = true;
 					if (!endswith($url, '/')) {
 						$url = $url . '/';
 					}
@@ -34,10 +32,8 @@ class Adfin extends Controller
 							array_push($notpund, $web);
 						}
 					}
-					$data += [
-						"pound" => $pound,
-						"notpound" => $notpund
-					];
+					$data['pound'] = $pound;
+					$data['notpound'] = $notpund;
 				} else {
 					$data['error'] = "URL Tidak valid !";
 				}

@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-define('APPATH', __DIR__ . '/../');
+define('APPATH', realpath(dirname(__DIR__)));
 
 use \Latte\Engine;
 
@@ -35,7 +35,7 @@ class Controller extends Engine
 	}
 	protected function view(string $file, array $data = [])
 	{
-		$_path = APPATH . 'Views/' . $file . '.latte';
+		$_path = APPATH . '/Views/' . $file . '.latte';
 		$this->render($_path, $data);
 	}
 }

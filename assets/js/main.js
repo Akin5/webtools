@@ -1,57 +1,90 @@
-$(window).on('load', function () {
-	const darkcolor = '#213040';
-	const lightcolor = '#4e73df';
+$(window).on("load", function () {
+	const darkcolor = "#213040";
+	const lightcolor = "#4e73df";
 	const comp = $(
-		'#wrapper, .sidebar, .navbar, .footer, .form-control, .custom-select',
+		"#wrapper, .sidebar, .navbar, .footer, .form-control, .custom-select",
 	);
 	const base_url =
 		window.location.protocol +
-		'//' +
+		"//" +
 		window.location.host +
-		'/' +
-		window.location.pathname.split('/')[1];
-	window.localStorage.getItem('dm')
-		? (comp.addClass('dark'),
-		  $('#darkmode').attr('checked', 'checked'),
-		  $('[name="theme-color"]').attr('content', darkcolor),
-		  $('#loader-wrapper').css('--loading-bg', darkcolor))
-		: (comp.removeClass('dark'),
-		  $('[name="theme-color"]').attr('content', lightcolor));
-	setTimeout(() => {
-		$('body').addClass('loaded');
+		"/" +
+		window.location.pathname.split("/")[1];
+	window.localStorage.getItem("dm")
+		? (comp.addClass("dark"),
+		  $("#darkmode").attr("checked", "checked"),
+		  $('[name="theme-color"]').attr("content", darkcolor),
+		  $("#loader-wrapper").css("--loading-bg", darkcolor))
+		: (comp.removeClass("dark"),
+		  $('[name="theme-color"]').attr("content", lightcolor));
+	setTimeout(function () {
+		$("body").addClass("loaded");
 	}, 1500);
 	// Dark Mode
-	$('#darkmode').on('change', function () {
+	$("#darkmode").on("change", function () {
 		this.checked
-			? (window.localStorage.setItem('dm', true),
-			  comp.addClass('dark'),
-			  $('[name="theme-color"]').attr('content', darkcolor),
+			? (window.localStorage.setItem("dm", true),
+			  comp.addClass("dark"),
+			  $('[name="theme-color"]').attr("content", darkcolor),
 			  darkcolor)
-			: (window.localStorage.removeItem('dm'),
-			  comp.removeClass('dark'),
-			  $('[name="theme-color"]').attr('content', lightcolor));
+			: (window.localStorage.removeItem("dm"),
+			  comp.removeClass("dark"),
+			  $('[name="theme-color"]').attr("content", lightcolor));
 	});
 
 	// Sidebar
-	$('#sidebarToggle, #sidebarToggleTop').on('click', function () {
-		$('body').toggleClass('sidebar-to');
-		$('.sidebar').toggleClass('toggled');
-		if ($('.sidebar').hasClass('toggled')) {
-			$('.sidebar .collapse').collapse('hide');
+	$("#sidebarToggle, #sidebarToggleTop").on("click", function () {
+		$("body").toggleClass("sidebar-to");
+		$(".sidebar").toggleClass("toggled");
+		if ($(".sidebar").hasClass("toggled")) {
+			$(".sidebar .collapse").collapse("hide");
 		}
-		$(this).toggleClass('active');
+		$(this).toggleClass("active");
 	});
 
-	$('#scjso').on('keyup', function () {
+	// Tools JSO
+	$("#scjso").on("keyup", function () {
 		convertjso();
 	});
-	$('#resultjso, #tagjso').on('click', function () {
+	$("#resultjso, #tagjso, #resultencdec").on("click", function () {
 		$(this).select();
 	});
-	$('#copyjso').click(function () {
-		$('#tagjso').select();
-		document.execCommand('copy');
-		$(this).tooltip('toggle');
+	$("#copyjso").click(function () {
+		$("#tagjso").select();
+		document.execCommand("copy");
+		$(this).tooltip("toggle");
+	});
+
+	// Tools Generate Hash
+	$(".copyhash").click(function () {
+		let hashname = $(this).data("hash");
+		$("#hash_" + hashname).select();
+		console.log(hashname);
+		document.execCommand("copy");
+		$(this).tooltip("toggle");
+	});
+
+	// Tools Encode & Decode Base64
+	$("#textencdec").on("keyup", function () {
+		let hasil;
+		if ($("#labeltypeenc").hasClass("active")) {
+			hasil = btoa($(this).val());
+		} else if ($("#labeltypedec").hasClass("active")) {
+			hasil = atob($(this).val());
+		}
+		$("#resultencdec").text(hasil);
+	});
+
+	$("#labeltypeenc").on("click", function () {
+		let hasil;
+		hasil = btoa($("#textencdec").val());
+		$("#resultencdec").text(hasil);
+	});
+
+	$("#labeltypedec").on("click", function () {
+		let hasil;
+		hasil = atob($("#textencdec").val());
+		$("#resultencdec").text(hasil);
 	});
 
 	// Waves
@@ -60,45 +93,45 @@ $(window).on('load', function () {
 		delay: 500,
 	};
 	Waves.init(wavesConfig);
-	Waves.attach('.btn', 'waves-light');
-	Waves.attach('.btn-circle', ['waves-light', 'waves-circle']);
+	Waves.attach(".btn", "waves-light");
+	Waves.attach(".btn-circle", ["waves-light", "waves-circle"]);
 
 	// Data Tables
-	$('#adtable').DataTable({
-		pagingType: 'full_numbers',
+	$("#adtable").DataTable({
+		pagingType: "full_numbers",
 		lengthMenu: [
 			[10, 25, 50, -1],
-			[10, 25, 50, 'All'],
+			[10, 25, 50, "All"],
 		],
 		responsive: true,
 		language: {
-			search: '_INPUT_',
-			searchPlaceholder: 'Cari URL !',
+			search: "_INPUT_",
+			searchPlaceholder: "Cari URL !",
 		},
 		paging: false,
-		scrollY: '500px',
+		scrollY: "500px",
 		scrollCollapse: true,
 	});
 
 	// Jquery Validation
 	$.validator.setDefaults({
-		errorElement: 'div',
+		errorElement: "div",
 		errorPlacement: function (err, el) {
-			err.addClass('invalid-feedback');
+			err.addClass("invalid-feedback");
 			err.insertAfter(el);
 		},
 		highlight: function (el) {
-			$(el).addClass('is-invalid').removeClass('is-valid');
+			$(el).addClass("is-invalid").removeClass("is-valid");
 		},
 		unhighlight: function (el) {
-			$(el).removeClass('is-invalid').addClass('is-valid');
+			$(el).removeClass("is-invalid").addClass("is-valid");
 		},
 	});
-	$('#adform').validate({
+	$("#adform").validate({
 		messages: {
 			urlad: {
-				url: 'Masukan URL dengan benar !',
-				required: 'Field ini harus diisi !',
+				url: "Masukan URL dengan benar !",
+				required: "Field ini harus diisi !",
 			},
 		},
 		rules: {
@@ -108,10 +141,10 @@ $(window).on('load', function () {
 			},
 		},
 	});
-	$('#jsoform').validate({
+	$("#jsoform").validate({
 		messages: {
 			scjso: {
-				required: 'Field ini harus diisi !',
+				required: "Field ini harus diisi !",
 			},
 		},
 		rules: {
@@ -119,28 +152,28 @@ $(window).on('load', function () {
 				required: true,
 			},
 		},
-		ignore: '#resultjso',
+		ignore: "#resultjso",
 		submitHandler: function (form) {
 			convertjso();
 			form.submit();
 		},
 	});
 });
-function toast(judul, tipe = 'success') {
+function toast(judul, tipe = "success") {
 	let mode;
-	window.localStorage.getItem('dm') ? (mode = 'dark') : (mode = 'light');
+	window.localStorage.getItem("dm") ? (mode = "dark") : (mode = "light");
 	const btn = Swal.mixin({
 		toast: true,
-		position: 'top-start',
+		position: "top-start",
 		customClass: {
-			title: 'text-primary',
-			popup: mode == 'dark' ? 'swa-dark' : '',
+			title: "text-primary",
+			popup: mode == "dark" ? "swa-dark" : "",
 		},
 		timer: 1500,
 		timerProgressBar: false,
 		onOpen: (toast) => {
-			toast.addEventListener('mouseenter', Swal.stopTimer);
-			toast.addEventListener('mouseleave', Swal.resumeTimer);
+			toast.addEventListener("mouseenter", Swal.stopTimer);
+			toast.addEventListener("mouseleave", Swal.resumeTimer);
 		},
 		showCancelButton: false,
 		showConfirmButton: false,
@@ -152,12 +185,12 @@ function toast(judul, tipe = 'success') {
 	});
 }
 function convertjso() {
-	let scjso = $('#scjso').val();
-	let resultjso = 'document.documentElement.innerHTML = String.fromCharCode(';
+	let scjso = $("#scjso").val();
+	let resultjso = "document.documentElement.innerHTML = String.fromCharCode(";
 	for (let n = 0; n < scjso.length; n++) {
-		if (n != 0) resultjso += ', ';
+		if (n != 0) resultjso += ", ";
 		resultjso += scjso.charCodeAt(n);
 	}
-	resultjso += ');';
-	$('#resultjso').text(resultjso);
+	resultjso += ");";
+	$("#resultjso").text(resultjso);
 }

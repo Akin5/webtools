@@ -280,7 +280,7 @@ ion-icon {
 }
 .sidebar .nav-item .collapse .collapse-inner, .sidebar .nav-item collapsing .collapse-inner {
   background: linear-gradient(315deg, #ffffff, #f1f2f5);
-  box-shadow: 7px 7px 14px #bababd, -7px -7px 14px rgba(255, 255, 255, 0.5);
+  box-shadow: 4px 4px 6px rgba(186, 186, 189, 0.5), -4px -4px 6px rgba(255, 255, 255, 0.5);
 }
 .sidebar .nav-item .collapse .collapse-inner .collapse-item, .sidebar .nav-item collapsing .collapse-inner .collapse-item {
   transform: scale(0.9);
@@ -293,7 +293,7 @@ ion-icon {
 }
 .sidebar.dark .nav-item .collapse .collapse-inner, .sidebar.dark .nav-item .collapsing .collapse-inner {
   background: linear-gradient(150deg, #213040 10%, #05202b);
-  box-shadow: 0 0.15rem 1.75rem 0 rgba(6, 47, 64, 0.15);
+  box-shadow: -4px -4px 6px rgba(5, 39, 52, 0.5), 4px 4px 6px rgba(6, 47, 64, 0.5);
   border-color: #213040;
 }
 .sidebar.dark .nav-item .collapse .collapse-inner .collapse-item, .sidebar.dark .nav-item .collapsing .collapse-inner .collapse-item {

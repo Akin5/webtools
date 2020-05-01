@@ -1,0 +1,65 @@
+{layout '../base.latte'}
+
+{block title}
+<title>Generate Hash | Web Tools BlackCoderCrush</title>
+{/block}
+
+{block content}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-11 mx-auto">
+			<div class="card mb-4">
+				<div class="card-header">
+					<h1 class="card-title"><i class="fal fa-fw fa-fingerprint mr-2"></i>Generate Hash</h1>
+				</div>
+				<div class="card-body">
+					<div class="alert alert-danger alert-dismissible" n:if="$msgerror">
+						<span>{$msgerror}</span>
+						<button class="close" data-dismiss="alert">&times;</button>
+					</div>
+					<div class="p-2 mt-3">
+						<form action="" method="post" autocomplete="off">
+							<div class="form-group">
+								<label class="col-form-label" for="text_genhash">Text</label>
+								<input id="text_genhash" class="form-control" name="text_genhash" placeholder="Text.." required>
+							</div>
+							<div class="d-flex justify-content-end">
+								<button class="btn btn-primary" type="submit" name="btngenhash" id="btngenhash">
+									<i class="fal fa-fw fa-cogs"></i>
+									Generate
+								</button>
+							</div>
+						</form>
+						<div class="row">
+							<div class="col-md-6 mt-2" n:foreach="$hash as $key => $val">
+								<p class="text-monoscape text-left font-weight-lighter">{$key} - {$val[1]|length}</p>
+							 <div class="input-group">
+								 <div class="input-group-prepend">
+									 <button data-hash="{$key|replace:[",","/"],"-"}" data-toggle="tooltip" data-placement="top" title="Copied!" class="btn copyhash btn-primary" id="copyhash"><i class="fal fa-copy"></i></button>
+								 </div>
+								 <input id="hash_{$key|replace:[",","/"],"-"}" type="text" name="hash" value="{$val[1]}" readonly class="form-control">
+							 </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card mt-4">
+				<div class="card-header">
+					<div class="p-2">
+						<h1 class="h3"><i class="fas text-warning fa-fw fa-exclamation-triangle mr-2"></i>Peraturan</h1>
+					</div>
+				</div>
+				<div class="card-body">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">1. Harap gunakan tools dengan benar !</li>
+						<li class="list-group-item">2. Jangan merusak tools yang tersedia</li>
+						<li class="list-group-item">3. Ikuti petunjuk dengan benar !</li>
+						<li class="list-group-item">4. Jika menemukan bug pada tools harap hubungi author !</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}

@@ -1,0 +1,61 @@
+{layout '../base.latte'}
+
+{block title}
+<title>Encode & Decode Base64 | Web Tools BlackCoderCrush</title>
+{/block}
+
+{block content}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-11 mx-auto">
+			<div class="card mb-4">
+				<div class="card-header">
+					<h1 class="card-title"><i class="fal fa-fw fa-key mr-2"></i>Encode & Decode Base64</h1>
+				</div>
+				<div class="card-body">
+					<div class="p-2 mt-3">
+						<form action="" method="post" id="encdecform">
+							<div class="form-group">
+								<label class="col-form-label" for="scencdec">Text</label>
+								<textarea id="textencdec" class="form-control" name="textencdec" cols="30" rows="10"></textarea>
+							</div>
+							<p class="font-weight-light text-md">Type : </p>
+							<div class="btn-group-toggle" data-toggle="buttons">
+								<label class="btn btn-outline-primary" id="labeltypeenc">
+									<i class="fal fa-fw fa-lock-alt"></i>
+									<input type="radio" name="typeenc" id="typeenc" autocomplete="off">
+									Encode
+								</label>
+								<label class="btn btn-outline-primary" id="labeltypedec">
+									<i class="fal fa-fw fa-unlock-alt"></i>
+									<input type="radio" name="typedec" id="typedec" autocomplete="off">
+									Decode
+								</label>
+							</div>
+							<div id="result" class="mt-3 form-group">
+								<label class="col-form-label" for="resultencdec">Result</label>
+								<textarea id="resultencdec" class="form-control" name="resultencdec" cols="30" rows="10" readonly></textarea>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="card mt-4">
+				<div class="card-header">
+					<div class="p-2">
+						<h1 class="h3"><i class="fas text-warning fa-fw fa-exclamation-triangle mr-2"></i>Peraturan</h1>
+					</div>
+				</div>
+				<div class="card-body">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">1. Harap gunakan tools dengan benar !</li>
+						<li class="list-group-item">2. Jangan merusak tools yang tersedia</li>
+						<li class="list-group-item">3. Ikuti petunjuk dengan benar !</li>
+						<li class="list-group-item">4. Jika menemukan bug pada tools harap hubungi author !</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}

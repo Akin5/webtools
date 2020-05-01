@@ -12,7 +12,8 @@
 	"require": {
 		"latte/latte": "^2.7",
 		"bramus/router": "^1.4",
-		"tracy/tracy": "^2.7"
+		"tracy/tracy": "^2.7",
+		"vlucas/phpdotenv": "^4.1"
 	},
 	"autoload": {
 		"psr-4": {

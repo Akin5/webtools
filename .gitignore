@@ -4,3 +4,4 @@
 .sass-cache/
 tags
 tags.vendors
+composer.lock

@@ -32,7 +32,7 @@
 		.collapse, collapsing {
 			.collapse-inner {
 				background: linear-gradient(315deg, #ffffff, #f1f2f5);
-				box-shadow:  7px 7px 14px #bababd, -7px -7px 14px rgba($color: #fff, $alpha: 0.5);
+				box-shadow:  4px 4px 6px rgba($color: #bababd, $alpha: 0.5), -4px -4px 6px rgba($color: #fff, $alpha: 0.5);
 				.collapse-item {
 					transform: scale(0.9);
 					transition: transform 0.2s  ease;
@@ -51,8 +51,8 @@
 				.collapse-inner {
 					background: linear-gradient(150deg, $dark-color 10%, #05202b);
 					// background-color: #213040;
-					// box-shadow:  -4px -4px 6px #052734, 4px 4px 6px #062f40;
-					box-shadow: 0 0.15rem 1.75rem 0 rgba($color: #062f40, $alpha: 0.15);
+					box-shadow:  -4px -4px 6px rgba($color: #052734, $alpha: 0.5), 4px 4px 6px rgba($color: #062f40, $alpha: 0.5);
+					// box-shadow: 0 0.15rem 1.75rem 0 rgba($color: #062f40, $alpha: 0.15);
 					border-color: #213040;
 					.collapse-item {
 						background-color: transparent;

@@ -39,7 +39,7 @@
 								<div class="input-group-prepend">
 									<button data-toggle="tooltip" data-placement="top" title="Copied!" class="btn btn-primary" id="copyjso"><i class="fal fa-copy"></i></button>
 								</div>
-								<input id=tagjso type="text" name="tagjso" value="{$code}" readonly class="form-control">
+								<input id=tagjso type="text" name="tagjso" value="{$code|escapeHtmlAttr}" readonly class="form-control">
 							</div>
 						</div>
 					</div>

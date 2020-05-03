@@ -1,40 +1,31 @@
-$(window).on("load", function () {
-	const darkcolor = "#213040";
+$(function () {
+	"use strict";
 	const lightcolor = "#4e73df";
-	const comp = $(
-		"#wrapper, .sidebar, .navbar, .footer, .form-control, .custom-select",
-	);
-	const base_url =
-		window.location.protocol +
-		"//" +
-		window.location.host +
-		"/" +
-		window.location.pathname.split("/")[1];
-	window.localStorage.getItem("dm")
-		? (comp.addClass("dark"),
-		  $("#darkmode").attr("checked", "checked"),
-		  $('[name="theme-color"]').attr("content", darkcolor),
-		  $("#loader-wrapper").css("--loading-bg", darkcolor))
-		: (comp.removeClass("dark"),
-		  $('[name="theme-color"]').attr("content", lightcolor));
-	setTimeout(function () {
-		$("body").addClass("loaded");
-	}, 1500);
-	// Dark Mode
-	$("#darkmode").on("change", function () {
-		this.checked
-			? (window.localStorage.setItem("dm", true),
-			  comp.addClass("dark"),
-			  $('[name="theme-color"]').attr("content", darkcolor),
-			  darkcolor)
-			: (window.localStorage.removeItem("dm"),
-			  comp.removeClass("dark"),
-			  $('[name="theme-color"]').attr("content", lightcolor));
+	const darkcolor = "#213040";
+	const $dm = $("#darkmode");
+	const $tnmc = $('[name="theme-color"]');
+	const $html = $("html");
+
+	$(window).on("load", function () {
+		$dm &&
+			(initMode(),
+			$dm.on("change", function () {
+				this.checked
+					? ($html.attr("data-theme", "dark"),
+					  $tnmc.attr("content", darkcolor),
+					  localStorage.setItem("dark", "dark"))
+					: ($html.removeAttr("data-theme"),
+					  $tnmc.attr("content", lightcolor),
+					  localStorage.removeItem("dark"));
+			}));
+		setTimeout(() => {
+			$("body").addClass("loaded");
+		}, 1500);
 	});
 
 	// Sidebar
-	$("#sidebarToggle, #sidebarToggleTop").on("click", function () {
-		$("body").toggleClass("sidebar-to");
+	$(document).on("click", "#sidebarToggle, #sidebarToggleTop", function () {
+		$("body").toggleClass("sidebar-toggled");
 		$(".sidebar").toggleClass("toggled");
 		if ($(".sidebar").hasClass("toggled")) {
 			$(".sidebar .collapse").collapse("hide");
@@ -49,48 +40,45 @@ $(window).on("load", function () {
 	$("#resultjso, #tagjso, #resultencdec").on("click", function () {
 		$(this).select();
 	});
-	$("#copyjso").click(function () {
+	$("#copyjso").on("click", function () {
 		$("#tagjso").select();
 		document.execCommand("copy");
 		$(this).tooltip("toggle");
 	});
 
 	// Tools Generate Hash
-	$(".copyhash").click(function () {
-		let hashname = $(this).data("hash");
-		$("#hash_" + hashname).select();
-		console.log(hashname);
+	$(".copyhash").on("click", function () {
+		let $anchor = $(this);
+		let $hashname = $anchor.data("hash");
+		$("#hash_" + $hashname).select();
 		document.execCommand("copy");
-		$(this).tooltip("toggle");
+		$anchor.tooltip("toggle");
 	});
 
 	// Tools Encode & Decode Base64
+	let enchasil;
 	$("#textencdec").on("keyup", function () {
-		let hasil;
+		let $anchor = $(this);
 		if ($("#labeltypeenc").hasClass("active")) {
-			hasil = btoa($(this).val());
+			enchasil = b64enc($anchor.val());
 		} else if ($("#labeltypedec").hasClass("active")) {
-			hasil = atob($(this).val());
+			enchasil = b64dec($anchor.val());
 		}
-		$("#resultencdec").text(hasil);
+		$("#resultencdec").text(enchasil);
 	});
 
 	$("#labeltypeenc").on("click", function () {
-		let hasil;
-		hasil = btoa($("#textencdec").val());
-		$("#resultencdec").text(hasil);
+		$("#resultencdec").text(b64enc($("#textencdec").val()));
 	});
 
 	$("#labeltypedec").on("click", function () {
-		let hasil;
-		hasil = atob($("#textencdec").val());
-		$("#resultencdec").text(hasil);
+		$("#resultencdec").text(b64dec($("#textencdec").val()));
 	});
 
 	// Waves
 	const wavesConfig = {
-		duration: 1000,
-		delay: 500,
+		duration: 1500,
+		delay: 300,
 	};
 	Waves.init(wavesConfig);
 	Waves.attach(".btn", "waves-light");
@@ -158,39 +146,41 @@ $(window).on("load", function () {
 			form.submit();
 		},
 	});
-});
-function toast(judul, tipe = "success") {
-	let mode;
-	window.localStorage.getItem("dm") ? (mode = "dark") : (mode = "light");
-	const btn = Swal.mixin({
-		toast: true,
-		position: "top-start",
-		customClass: {
-			title: "text-primary",
-			popup: mode == "dark" ? "swa-dark" : "",
-		},
-		timer: 1500,
-		timerProgressBar: false,
-		onOpen: (toast) => {
-			toast.addEventListener("mouseenter", Swal.stopTimer);
-			toast.addEventListener("mouseleave", Swal.resumeTimer);
-		},
-		showCancelButton: false,
-		showConfirmButton: false,
-		backdrop: true,
-	});
-	btn.fire({
-		icon: tipe,
-		title: judul,
-	});
-}
-function convertjso() {
-	let scjso = $("#scjso").val();
-	let resultjso = "document.documentElement.innerHTML = String.fromCharCode(";
-	for (let n = 0; n < scjso.length; n++) {
-		if (n != 0) resultjso += ", ";
-		resultjso += scjso.charCodeAt(n);
+	function convertjso() {
+		let scjso = $("#scjso").val();
+		let resultjso = "document.documentElement.innerHTML = String.fromCharCode(";
+		for (let n = 0; n < scjso.length; n++) {
+			if (n != 0) resultjso += ", ";
+			resultjso += scjso.charCodeAt(n);
+		}
+		resultjso += ");";
+		$("#resultjso").text(resultjso);
 	}
-	resultjso += ");";
-	$("#resultjso").text(resultjso);
-}
+	function b64enc(str) {
+		return window.btoa(
+			encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
+				return String.fromCharCode(parseInt(p1, 16));
+			}),
+		);
+	}
+	function b64dec(str) {
+		return decodeURIComponent(
+			Array.prototype.map
+				.call(atob(str), function (c) {
+					return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+				})
+				.join(""),
+		);
+	}
+	function initMode() {
+		const e =
+			null !== localStorage.getItem("dark") &&
+			"dark" === localStorage.getItem("dark");
+		$dm.prop("checked", e),
+			e
+				? ($html.attr("data-theme", "dark"),
+				  $tnmc.attr("content", darkcolor),
+				  $("#loader-wrapper").css("--loading-bg", darkcolor))
+				: ($html.removeAttr("data-theme"), $tnmc.attr("content", lightcolor));
+	}
+});

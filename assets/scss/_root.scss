@@ -10,3 +10,42 @@ ion-icon {
 	font-style: normal;
 	font-size: 16px;
 }
+#wrapper {
+	#content-wrapper {
+		transition: all 0.1s ease-in-out;
+		background-color: $text-color-dark;
+	}
+	.card {
+		box-shadow: 0 0.15rem 1.74rem rgba(0, 0, 0, 0.15);
+	}
+}
+table.dataTable {
+	margin-top: 30px !important;
+}
+.dataTables_wrapper {
+	padding-top: 10px !important;
+	.dataTable_info {
+		color: $text-color-dark;
+	}
+	.dataTables_paginate {
+		margin-right: 1em;
+		.pagination {
+			.page-link {
+				overflow: auto;
+				overflow-x: scroll;
+				max-width: 100%;
+			}
+		}
+	}
+	.dataTables_length {
+		label {
+			margin-left: 1em;
+		}
+	}
+	.dataTables_filter {
+		input {
+			margin-right: 1em;
+		}
+	}
+}
+

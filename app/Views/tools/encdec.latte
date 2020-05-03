@@ -15,6 +15,7 @@
 				<div class="card-body">
 					<div class="p-2 mt-3">
 						<form action="" method="post" id="encdecform">
+							<span class="form-help text-muted">NOTE: Jika decode tidak berfungsi itu berarti text yang anda masukan salah!</span>
 							<div class="form-group">
 								<label class="col-form-label" for="scencdec">Text</label>
 								<textarea id="textencdec" class="form-control" name="textencdec" cols="30" rows="10"></textarea>
@@ -37,7 +38,7 @@
 								<textarea id="resultencdec" class="form-control" name="resultencdec" cols="30" rows="10" readonly></textarea>
 							</div>
 						</form>
-						<button id="btncopyencdec" class="btn btn-primary">
+						<button id="btncopyencdec" class="btn btn-primary" data-toggle="tooltip" title="Copied!" data-placement="top">
 							<i class="fal fa-fw fa-copy"></i>
 							Copy Text !
 						</button>

@@ -1,5 +1,137 @@
 $(function () {
-	"use strict";
+	const base64_encode_chars =
+		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+	const base64_decode_chars = [
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		62,
+		-1,
+		-1,
+		-1,
+		63,
+		52,
+		53,
+		54,
+		55,
+		56,
+		57,
+		58,
+		59,
+		60,
+		61,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		0,
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		7,
+		8,
+		9,
+		10,
+		11,
+		12,
+		13,
+		14,
+		15,
+		16,
+		17,
+		18,
+		19,
+		20,
+		21,
+		22,
+		23,
+		24,
+		25,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+
+		26,
+		27,
+		28,
+		29,
+		30,
+		31,
+		32,
+		33,
+		34,
+		35,
+		36,
+		37,
+		38,
+		39,
+		40,
+		41,
+		42,
+		43,
+		44,
+		45,
+		46,
+		47,
+		48,
+		49,
+		50,
+		51,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+	];
+	("use strict");
 	const lightcolor = "#4e73df";
 	const darkcolor = "#213040";
 	const $dm = $("#darkmode");
@@ -34,7 +166,7 @@ $(function () {
 
 		// Tools JSO
 		$("#scjso").on("keyup", function () {
-			convertjso();
+			$("#resultjso").text($(this).convertjso());
 		});
 		$("#resultjso, #tagjso, #resultencdec").on("click", function () {
 			$(this).select();
@@ -59,19 +191,19 @@ $(function () {
 		$("#textencdec").on("keyup", function () {
 			let $anchor = $(this);
 			if ($("#labeltypeenc").hasClass("active")) {
-				enchasil = b64enc($anchor.val());
+				enchasil = base64encode($anchor.val());
 			} else if ($("#labeltypedec").hasClass("active")) {
-				enchasil = b64dec($anchor.val());
+				enchasil = base64decode($anchor.val());
 			}
 			$("#resultencdec").text(enchasil);
 		});
 
 		$("#labeltypeenc").on("click", function () {
-			$("#resultencdec").text(b64enc($("#textencdec").val()));
+			$("#resultencdec").text();
 		});
 
 		$("#labeltypedec").on("click", function () {
-			$("#resultencdec").text(b64dec($("#textencdec").val()));
+			$("#resultencdec").text(base64decode($("#textencdec").val()));
 		});
 
 		$("#btncopyencdec").on("click", function () {
@@ -147,40 +279,10 @@ $(function () {
 			},
 			ignore: "#resultjso",
 			submitHandler: function (form) {
-				convertjso();
+				$("#resultjso").text($("#scjso").convertjso());
 				form.submit();
 			},
 		});
-		function convertjso() {
-			let scjso = $("#scjso").val();
-			let resultjso =
-				"document.documentElement.innerHTML = String.fromCharCode(";
-			for (let n = 0; n < scjso.length; n++) {
-				if (n != 0) resultjso += ", ";
-				resultjso += scjso.charCodeAt(n);
-			}
-			resultjso += ");";
-			$("#resultjso").text(resultjso);
-		}
-		function b64enc(str) {
-			return window.btoa(
-				encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (
-					match,
-					p1,
-				) {
-					return String.fromCharCode(parseInt(p1, 16));
-				}),
-			);
-		}
-		function b64dec(str) {
-			return decodeURIComponent(
-				Array.prototype.map
-					.call(atob(str), function (c) {
-						return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-					})
-					.join(""),
-			);
-		}
 		function initMode() {
 			const e =
 				null !== localStorage.getItem("dark") &&
@@ -191,6 +293,88 @@ $(function () {
 					  $tnmc.attr("content", darkcolor),
 					  $("#loader-wrapper").css("--loading-bg", darkcolor))
 					: ($html.removeAttr("data-theme"), $tnmc.attr("content", lightcolor));
+		}
+		function base64encode(str) {
+			var out, i, len;
+			var char1, char2, char3;
+
+			len = str.length;
+			i = 0;
+			out = "";
+			while (i < len) {
+				char1 = str.charCodeAt(i++) & 0xff;
+				if (i == len) {
+					out += base64_encode_chars.charAt(char1 >> 2);
+					out += base64_encode_chars.charAt((char1 & 0x3) << 4);
+					out += "==";
+					break;
+				}
+				char2 = str.charCodeAt(i++);
+				if (i == len) {
+					out += base64_encode_chars.charAt(char1 >> 2);
+					out += base64_encode_chars.charAt(
+						((char1 & 0x3) << 4) | ((char2 & 0xf0) >> 4),
+					);
+					out += base64_encode_chars.charAt((char2 & 0xf) << 2);
+					out += "=";
+					break;
+				}
+				char3 = str.charCodeAt(i++);
+				out += base64_encode_chars.charAt(char1 >> 2);
+				out += base64_encode_chars.charAt(
+					((char1 & 0x3) << 4) | ((char2 & 0xf0) >> 4),
+				);
+				out += base64_encode_chars.charAt(
+					((char2 & 0xf) << 2) | ((char3 & 0xc0) >> 6),
+				);
+				out += base64_encode_chars.charAt(char3 & 0x3f);
+			}
+			return out;
+		}
+		function base64decode(str) {
+			var char1, char2, char3, char4;
+			var i, len, out;
+
+			len = str.length;
+			i = 0;
+			out = "";
+			while (i < len) {
+				/* char1 */
+				do {
+					char1 = base64_decode_chars[str.charCodeAt(i++) & 0xff];
+				} while (i < len && char1 == -1);
+				if (char1 == -1) break;
+
+				/* char2 */
+				do {
+					char2 = base64_decode_chars[str.charCodeAt(i++) & 0xff];
+				} while (i < len && char2 == -1);
+				if (char2 == -1) break;
+
+				out += String.fromCharCode((char1 << 2) | ((char2 & 0x30) >> 4));
+
+				/* char3 */
+				do {
+					char3 = str.charCodeAt(i++) & 0xff;
+					if (char3 == 61) return out;
+					char3 = base64_decode_chars[char3];
+				} while (i < len && char3 == -1);
+				if (char3 == -1) break;
+
+				out += String.fromCharCode(
+					((char2 & 0xf) << 4) | ((char3 & 0x3c) >> 2),
+				);
+
+				/* char4 */
+				do {
+					char4 = str.charCodeAt(i++) & 0xff;
+					if (char4 == 61) return out;
+					char4 = base64_decode_chars[char4];
+				} while (i < len && char4 == -1);
+				if (char4 == -1) break;
+				out += String.fromCharCode(((char3 & 0x03) << 6) | char4);
+			}
+			return out;
 		}
 	});
 });

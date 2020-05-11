@@ -130,102 +130,100 @@ const base64_decode_chars = [
 	-1,
 	-1,
 ];
-(function ($) {
-	$.fn.convertjso = function (value, fn = null) {
-		let valuejso, resultjso, n;
-		valuejso = value;
-		if (!value) valuejso = $(this).val();
-		resultjso = "document.documentElement.innerHTML = String.fromCharCode(";
-		for (n = 0; n < valuejso.length; n++) {
-			if (n != 0) resultjso += ", ";
-			resultjso += valuejso.charCodeAt(n);
+function convertjso(value, fn = null) {
+	let valuejso, resultjso, n;
+	if (!value) valuejso = this.value;
+	valuejso = value;
+	resultjso = "document.documentElement.innerHTML = String.fromCharCode(";
+	for (n = 0; n < valuejso.length; n++) {
+		if (n != 0) resultjso += ", ";
+		resultjso += valuejso.charCodeAt(n);
+	}
+	resultjso += ");";
+	if (typeof fn == "function") fn(resultjso);
+	else return resultjso;
+}
+function base64encode(str) {
+	let out, i, len, text;
+	let char1, char2, char3;
+	text = str;
+	if (!str) text = $(this).val();
+	len = text.length;
+	i = 0;
+	out = "";
+	while (i < len) {
+		char1 = text.charCodeAt(i++) & 0xff;
+		if (i == len) {
+			out += base64_encode_chars.charAt(char1 >> 2);
+			out += base64_encode_chars.charAt((char1 & 0x3) << 4);
+			out += "==";
+			break;
 		}
-		resultjso += ");";
-		if (typeof fn == "function") fn(resultjso);
-		else return resultjso;
-	};
-	$.fn.base64encode = function (str) {
-		let out, i, len, text;
-		let char1, char2, char3;
-		text = str;
-		if (!str) text = $(this).val();
-		len = text.length;
-		i = 0;
-		out = "";
-		while (i < len) {
-			char1 = text.charCodeAt(i++) & 0xff;
-			if (i == len) {
-				out += base64_encode_chars.charAt(char1 >> 2);
-				out += base64_encode_chars.charAt((char1 & 0x3) << 4);
-				out += "==";
-				break;
-			}
-			char2 = text.charCodeAt(i++);
-			if (i == len) {
-				out += base64_encode_chars.charAt(char1 >> 2);
-				out += base64_encode_chars.charAt(
-					((char1 & 0x3) << 4) | ((char2 & 0xf0) >> 4),
-				);
-				out += base64_encode_chars.charAt((char2 & 0xf) << 2);
-				out += "=";
-				break;
-			}
-			char3 = text.charCodeAt(i++);
+		char2 = text.charCodeAt(i++);
+		if (i == len) {
 			out += base64_encode_chars.charAt(char1 >> 2);
 			out += base64_encode_chars.charAt(
 				((char1 & 0x3) << 4) | ((char2 & 0xf0) >> 4),
 			);
-			out += base64_encode_chars.charAt(
-				((char2 & 0xf) << 2) | ((char3 & 0xc0) >> 6),
-			);
-			out += base64_encode_chars.charAt(char3 & 0x3f);
+			out += base64_encode_chars.charAt((char2 & 0xf) << 2);
+			out += "=";
+			break;
 		}
-		return out;
-	};
-	$.fn.base64decode = function (str = null) {
-		let char1, char2, char3, char4;
-		let i, len, out;
+		char3 = text.charCodeAt(i++);
+		out += base64_encode_chars.charAt(char1 >> 2);
+		out += base64_encode_chars.charAt(
+			((char1 & 0x3) << 4) | ((char2 & 0xf0) >> 4),
+		);
+		out += base64_encode_chars.charAt(
+			((char2 & 0xf) << 2) | ((char3 & 0xc0) >> 6),
+		);
+		out += base64_encode_chars.charAt(char3 & 0x3f);
+	}
+	return out;
+}
+function base64decode(str = null) {
+	let char1, char2, char3, char4;
+	let i, len, out;
 
-		if (!str) {
-			str = $(this).val();
-		}
-		len = str.length;
-		i = 0;
-		out = "";
-		while (i < len) {
-			/* char1 */
-			do {
-				char1 = base64_decode_chars[str.charCodeAt(i++) & 0xff];
-			} while (i < len && char1 == -1);
-			if (char1 == -1) break;
+	if (!str) {
+		str = $(this).val();
+	}
+	len = str.length;
+	i = 0;
+	out = "";
+	while (i < len) {
+		/* char1 */
+		do {
+			char1 = base64_decode_chars[str.charCodeAt(i++) & 0xff];
+		} while (i < len && char1 == -1);
+		if (char1 == -1) break;
 
-			/* char2 */
-			do {
-				char2 = base64_decode_chars[str.charCodeAt(i++) & 0xff];
-			} while (i < len && char2 == -1);
-			if (char2 == -1) break;
+		/* char2 */
+		do {
+			char2 = base64_decode_chars[str.charCodeAt(i++) & 0xff];
+		} while (i < len && char2 == -1);
+		if (char2 == -1) break;
 
-			out += String.fromCharCode((char1 << 2) | ((char2 & 0x30) >> 4));
+		out += String.fromCharCode((char1 << 2) | ((char2 & 0x30) >> 4));
 
-			/* char3 */
-			do {
-				char3 = str.charCodeAt(i++) & 0xff;
-				if (char3 == 61) return out;
-				char3 = base64_decode_chars[char3];
-			} while (i < len && char3 == -1);
-			if (char3 == -1) break;
+		/* char3 */
+		do {
+			char3 = str.charCodeAt(i++) & 0xff;
+			if (char3 == 61) return out;
+			char3 = base64_decode_chars[char3];
+		} while (i < len && char3 == -1);
+		if (char3 == -1) break;
 
-			out += String.fromCharCode(((char2 & 0xf) << 4) | ((char3 & 0x3c) >> 2));
+		out += String.fromCharCode(((char2 & 0xf) << 4) | ((char3 & 0x3c) >> 2));
 
-			/* char4 */
-			do {
-				char4 = str.charCodeAt(i++) & 0xff;
-				if (char4 == 61) return out;
-				char4 = base64_decode_chars[char4];
-			} while (i < len && char4 == -1);
-			if (char4 == -1) break;
-			out += String.fromCharCode(((char3 & 0x03) << 6) | char4);
-		}
-		return out;
-	};
-})(jQuery);
+		/* char4 */
+		do {
+			char4 = str.charCodeAt(i++) & 0xff;
+			if (char4 == 61) return out;
+			char4 = base64_decode_chars[char4];
+		} while (i < len && char4 == -1);
+		if (char4 == -1) break;
+		out += String.fromCharCode(((char3 & 0x03) << 6) | char4);
+	}
+	return out;
+}

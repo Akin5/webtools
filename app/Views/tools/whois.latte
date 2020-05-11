@@ -1,0 +1,43 @@
+{layout '../base.latte'}
+{block title}
+<title>Whois Lookup | Web Tools BlackCoderCrush</title>
+{/block}
+{block content}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 mx-auto">
+			<div class="card mb-4">
+				<div class="card-header">
+					<h3 class="card-title"><i class="fal fa-globe fa-fw mr-2"></i>Whois Lookup</h3>
+				</div>
+				<div class="card-body">
+					<div class="p-2 mt-2 mb-3">
+						<form action="" method="post" id="whoform">
+							<div class="form-group">
+								<label for="urlwho" class="col-form-label">URL: </label>
+								<input id="urlwho" class="form-control" type="url" name="urlwho" placeholder="URL ..">
+							</div>
+							<div class="d-flex justify-content-end">
+								<button class="btn btn-primary" id="btnwho" name="btnwho" type="submit" >
+									<i class="fal fa-database fa-fw"></i>
+									Get Whois Data !
+								</button>
+							</div>
+						</form>
+						<div class="row">
+							<div class="col-md-12 mt-3">
+								<div class="spinner-double-loader-wrapper">
+									<div class="spinner-double-loader">
+										<div></div>
+										<div></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}

@@ -44,3 +44,4 @@ if (!function_exists('endswith')) {
 		return (substr($string, -$len) === $endString);
 	}
 }
+
